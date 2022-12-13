@@ -38,6 +38,12 @@
       <groupId>pentaho-kettle</groupId>
       <artifactId>kettle-ui-swt</artifactId>
       <version>${pdi.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>commands</artifactId>
+          <groupId>org.eclipse.core</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.eclipse.swt</groupId>

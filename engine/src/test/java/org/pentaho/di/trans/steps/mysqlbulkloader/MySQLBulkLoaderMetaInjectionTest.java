@@ -75,6 +75,11 @@ public class MySQLBulkLoaderMetaInjectionTest extends BaseMetadataInjectionTest<
         return meta.isLocalFile();
       }
     } );
+    check( "TRUNCATE", new BooleanGetter() {
+      public boolean get() {
+        return meta.isTruncate();
+      }
+    } );
     check( "DELIMITER", new StringGetter() {
       public String get() {
         return meta.getDelimiter();

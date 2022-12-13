@@ -139,6 +139,10 @@ public class MySQLBulkLoaderMeta extends BaseStepMeta implements StepMetaInterfa
   @Injection( name = "LOCAL_FILE" )
   private boolean localFile;
 
+  /** allows specification of the truncate clause */
+  @Injection( name = "TRUNCATE" )
+  private boolean truncate;
+
   /** The delimiter to use */
   @Injection( name = "DELIMITER" )
   private String delimiter;
@@ -257,6 +261,7 @@ public class MySQLBulkLoaderMeta extends BaseStepMeta implements StepMetaInterfa
       replacingData = "Y".equalsIgnoreCase( XMLHandler.getTagValue( stepnode, "replace" ) );
       ignoringErrors = "Y".equalsIgnoreCase( XMLHandler.getTagValue( stepnode, "ignore" ) );
       localFile = "Y".equalsIgnoreCase( XMLHandler.getTagValue( stepnode, "local" ) );
+      truncate = "Y".equalsIgnoreCase( XMLHandler.getTagValue( stepnode, "truncate" ) );
 
       int nrvalues = XMLHandler.countNodes( stepnode, "mapping" );
       allocate( nrvalues );
@@ -290,6 +295,7 @@ public class MySQLBulkLoaderMeta extends BaseStepMeta implements StepMetaInterfa
     replacingData = false;
     ignoringErrors = false;
     localFile = true;
+    truncate = true;
     bulkSize = null;
 
     allocate( 0 );
@@ -309,6 +315,7 @@ public class MySQLBulkLoaderMeta extends BaseStepMeta implements StepMetaInterfa
     retval.append( "    " ).append( XMLHandler.addTagValue( "replace", replacingData ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "ignore", ignoringErrors ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "local", localFile ) );
+    retval.append( "    " ).append( XMLHandler.addTagValue( "truncate", truncate ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "fifo_file_name", fifoFileName ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "bulk_size", bulkSize ) );
 
@@ -338,6 +345,7 @@ public class MySQLBulkLoaderMeta extends BaseStepMeta implements StepMetaInterfa
       replacingData = rep.getStepAttributeBoolean( id_step, "replace" );
       ignoringErrors = rep.getStepAttributeBoolean( id_step, "ignore" );
       localFile = rep.getStepAttributeBoolean( id_step, "local" );
+      truncate = rep.getStepAttributeBoolean( id_step, "truncate" );
       bulkSize = rep.getStepAttributeString( id_step, "bulk_size" );
 
       int nrvalues = rep.countNrStepAttributes( id_step, "stream_name" );
@@ -372,6 +380,7 @@ public class MySQLBulkLoaderMeta extends BaseStepMeta implements StepMetaInterfa
       rep.saveStepAttribute( id_transformation, id_step, "replace", replacingData );
       rep.saveStepAttribute( id_transformation, id_step, "ignore", ignoringErrors );
       rep.saveStepAttribute( id_transformation, id_step, "local", localFile );
+      rep.saveStepAttribute( id_transformation, id_step, "truncate", truncate );
       rep.saveStepAttribute( id_transformation, id_step, "bulk_size", bulkSize );
 
       for ( int i = 0; i < fieldTable.length; i++ ) {
@@ -818,6 +827,22 @@ public class MySQLBulkLoaderMeta extends BaseStepMeta implements StepMetaInterfa
   public void setLocalFile( boolean localFile ) {
     this.localFile = localFile;
   }
+
+  /**
+   * @return the truncate
+   */
+  public boolean isTruncate() {
+    return truncate;
+  }
+
+  /**
+   * @param truncate
+   *          the localFile to set
+   */
+  public void setTruncate( boolean truncate ) {
+    this.truncate = truncate;
+  }
+
 
   @Override
   public String getMissingDatabaseConnectionInformationMessage() {

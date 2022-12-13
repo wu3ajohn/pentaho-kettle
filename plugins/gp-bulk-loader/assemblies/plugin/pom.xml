@@ -25,6 +25,28 @@
       <artifactId>gp-bulk-loader-core</artifactId>
       <version>${project.revision}</version>
       <scope>runtime</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>common</artifactId>
+          <groupId>org.eclipse.equinox</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commons-dbcp</artifactId>
+          <groupId>commons-dbcp</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>kettle-engine</artifactId>
+          <groupId>pentaho-kettle</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commons-io</artifactId>
+          <groupId>commons-io</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>junit</artifactId>
+          <groupId>junit</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 

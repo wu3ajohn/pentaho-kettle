@@ -19,10 +19,10 @@
     <version>9.3.0.0-271</version>
   </parent>
 
-  <scm>
+<!--  <scm>
     <developerConnection>scm:git:git@github.com:pentaho/pentaho-kettle.git</developerConnection>
     <tag>HEAD</tag>
-  </scm>
+  </scm>-->
 
   <licenses>
     <license>
@@ -301,7 +301,7 @@
   </profiles>
 
 
-  <repositories>
+<!--  <repositories>
     <repository>
       <id>pentaho-public</id>
       <name>Pentaho Public</name>
@@ -329,7 +329,26 @@
         <updatePolicy>never</updatePolicy>
       </releases>
     </pluginRepository>
+  </pluginRepositories>-->
+
+  <repositories>
+    <repository>
+      <id>pentaho-nexus</id>
+      <url>https://nexus.pentaho.org/content/groups/omni/</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>aliyun-plugin</id>
+      <name>aliyun-plugin</name>
+      <url>https://nexus.pentaho.org/content/groups/omni/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
   </pluginRepositories>
-
-
 </project>

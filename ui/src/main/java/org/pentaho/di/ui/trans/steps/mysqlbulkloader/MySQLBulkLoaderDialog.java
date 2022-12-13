@@ -112,6 +112,10 @@ public class MySQLBulkLoaderDialog extends BaseStepDialog implements StepDialogI
   private Button wLocal;
   private FormData fdlLocal, fdLocal;
 
+  private Label wlTruncate;
+  private Button wTruncate;
+  private FormData fdlTruncate, fdTruncate;
+
   private Label wlDelimiter;
   private Button wbDelimiter;
   private TextVar wDelimiter;
@@ -466,6 +470,30 @@ public class MySQLBulkLoaderDialog extends BaseStepDialog implements StepDialogI
       }
     } );
 
+    // Truncate line...
+    wlTruncate = new Label( shell, SWT.RIGHT );
+    wlTruncate.setText( "truncate table" );
+    props.setLook( wlTruncate );
+    fdlTruncate = new FormData();
+    fdlTruncate.left = new FormAttachment( 0, 0 );
+    fdlTruncate.right = new FormAttachment( middle, -margin );
+    fdlTruncate.top = new FormAttachment( wIgnore, margin * 2 );
+    wlTruncate.setLayoutData( fdlTruncate );
+
+    wTruncate = new Button( shell, SWT.CHECK | SWT.LEFT );
+    props.setLook( wTruncate );
+    fdTruncate = new FormData();
+    fdTruncate.left = new FormAttachment( middle, 0 );
+    fdTruncate.top = new FormAttachment( wIgnore, margin * 2 );
+    fdTruncate.right = new FormAttachment( 100, 0 );
+    wTruncate.setLayoutData( fdTruncate );
+    wTruncate.addSelectionListener( new SelectionAdapter() {
+      @Override
+      public void widgetSelected( SelectionEvent arg0 ) {
+        input.setChanged();
+      }
+    } );
+
     // THE BUTTONS
     wOK = new Button( shell, SWT.PUSH );
     wOK.setText( BaseMessages.getString( PKG, "System.Button.OK" ) );
@@ -764,6 +792,7 @@ public class MySQLBulkLoaderDialog extends BaseStepDialog implements StepDialogI
     wReplace.setSelection( input.isReplacingData() );
     wIgnore.setSelection( input.isIgnoringErrors() );
     wLocal.setSelection( input.isLocalFile() );
+    wTruncate.setSelection( input.isTruncate() );
     wBulkSize.setText( Const.NVL( input.getBulkSize(), "" ) );
 
     if ( input.getFieldTable() != null ) {
@@ -838,6 +867,7 @@ public class MySQLBulkLoaderDialog extends BaseStepDialog implements StepDialogI
     inf.setReplacingData( wReplace.getSelection() );
     inf.setIgnoringErrors( wIgnore.getSelection() );
     inf.setLocalFile( wLocal.getSelection() );
+    inf.setTruncate( wTruncate.getSelection() );
     inf.setBulkSize( wBulkSize.getText() );
 
     if ( log.isDebug() ) {
