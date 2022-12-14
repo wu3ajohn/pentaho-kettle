@@ -58,6 +58,8 @@ public class GPLoadDataOutput {
   private int[] fieldNumbers = null;
   private String enclosure = null;
   private String delimiter = null;
+  private char delimiterChar = 0;
+  private String nullAs = null;
   private SimpleDateFormat sdfDate = null;
   private SimpleDateFormat sdfDateTime = null;
 
@@ -151,8 +153,12 @@ public class GPLoadDataOutput {
         if ( Utils.isEmpty( delimiter ) ) {
           throw new KettleException( BaseMessages.getString( PKG, "GPload.Exception.DelimiterMissing" ) );
         }
+        if(delimiter.startsWith("\\x"))
+          delimiterChar = (char)Integer.parseInt(delimiter.substring(2),16);
+        else
+          delimiterChar = delimiter.charAt(0);
       }
-
+      nullAs = meta.getNullAs();
       // Setup up the fields we need to take for each of the rows
       // as this speeds up processing.
       fieldNumbers = new int[meta.getFieldStream().length];
@@ -175,20 +181,30 @@ public class GPLoadDataOutput {
     for ( int i = 0; i < fieldNumbers.length; i++ ) {
       // TODO: variable substitution
       if ( i != 0 ) {
-        output.print( delimiter );
+//        output.print( delimiter );//TODO
+        output.print(delimiterChar);
       }
       number = fieldNumbers[i];
       v = mi.getValueMeta( number );
       if ( row[number] == null ) {
         // TODO (SB): special check for null in case of Strings.
-        output.print( enclosure );
-        output.print( enclosure );
+        switch ( v.getType() ) {
+          case ValueMetaInterface.TYPE_STRING:
+            output.print(enclosure);
+            output.print(enclosure);
+            break;
+          default:
+            output.print(nullAs);
+        }
       } else {
         switch ( v.getType() ) {
           case ValueMetaInterface.TYPE_STRING:
             String s = mi.getString( row, number );
             if ( s.indexOf( enclosure ) >= 0 ) {
               s = createEscapedString( s, enclosure );
+            }
+            if ( s.indexOf( "\n" ) >= 0 ) {
+              s = s.replaceAll("\n","\r");//TODO
             }
             output.print( enclosure );
             output.print( s );

@@ -158,7 +158,7 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
   private String delimiter;
 
   /** Default number of maximum errors allowed on a load */
-  public static String MAX_ERRORS_DEFAULT = "50";
+  public static String MAX_ERRORS_DEFAULT = "0";
 
   /** Update condition **/
   @Injection( name = "UPDATE_CONDITIONS", group = "FIELDS" )
@@ -837,7 +837,8 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
   }
 
   public String getNullAs() {
-    return nullAs;
+//    return nullAs;
+    return "\\N";
   }
 
   public void setNullAs( String nullAs ) {
@@ -873,11 +874,13 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
   }
 
   public String getDelimiter() {
-    return delimiter;
+//    return delimiter;
+    return "\\x01";
+
   }
 
   public String getEnclosure() {
-    return "";
+    return "\"";
   }
 
   public boolean isEraseFiles() {
@@ -889,7 +892,8 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
   }
 
   public String getMaxErrors() {
-    return maxErrors;
+//    return maxErrors;
+    return "0";
   }
 
   public void setMaxErrors( String maxErrors ) {

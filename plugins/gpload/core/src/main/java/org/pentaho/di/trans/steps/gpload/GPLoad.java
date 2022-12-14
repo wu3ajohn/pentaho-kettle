@@ -279,14 +279,15 @@ public class GPLoad extends BaseStep implements StepInterface {
 
     // See also page 155 for formatting information & escaping
     // delimiter validation should have been perfomed
-    contents.append( GPLoad.INDENT ).append( "- FORMAT: TEXT" ).append( Const.CR );
-    contents.append( GPLoad.INDENT ).append( "- DELIMITER: " ).append( GPLoad.SINGLE_QUOTE ).append( delimiter )
-        .append( GPLoad.SINGLE_QUOTE ).append( Const.CR );
-//  if ( !Utils.isEmpty( meta.getNullAs() ) ) {
-    if ( !Utils.isEmpty( meta.getNullAs() ) ) {
-      contents.append( GPLoad.INDENT ).append( "- NULL_AS: " ).append( GPLoad.SINGLE_QUOTE ).append( meta.getNullAs() ).append( GPLoad.SINGLE_QUOTE ).append( Const.CR );
-    }
-
+//    contents.append( GPLoad.INDENT ).append( "- FORMAT: TEXT" ).append( Const.CR );
+    contents.append( GPLoad.INDENT ).append( "- FORMAT: CSV" ).append( Const.CR );
+    contents.append( GPLoad.INDENT ).append( "- DELIMITER: " ).append( GPLoad.DOUBLE_QUOTE ).append( delimiter )
+        .append( GPLoad.DOUBLE_QUOTE ).append( Const.CR );
+//    if ( !Utils.isEmpty( meta.getNullAs() ) ) {
+//      contents.append( GPLoad.INDENT ).append( "- NULL_AS: " ).append( GPLoad.SINGLE_QUOTE ).append( meta.getNullAs() ).append( GPLoad.SINGLE_QUOTE ).append( Const.CR );
+//    }
+    contents.append( GPLoad.INDENT ).append( "- ESCAPE: " ).append( GPLoad.SINGLE_QUOTE ).append( "\\" ).append( GPLoad.SINGLE_QUOTE ).append( Const.CR );
+    contents.append( GPLoad.INDENT ).append( "- NULL_AS: " ).append( GPLoad.SINGLE_QUOTE ).append( meta.getNullAs() ).append( GPLoad.SINGLE_QUOTE ).append( Const.CR );
     // TODO: implement escape character
     // TODO: test what happens when a single quote is specified- can we specify a single quiote within doubole quotes
     // then?
@@ -388,6 +389,9 @@ public class GPLoad extends BaseStep implements StepInterface {
         }
       }
     }
+
+    contents.append( GPLoad.INDENT ).append( "PRELOAD:" ).append( Const.CR );
+    contents.append( GPLoad.INDENT ).append( "- TRUNCATE: " ).append( "True" ).append( Const.CR );
 
     return contents.toString();
   }
