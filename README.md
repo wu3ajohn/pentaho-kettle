@@ -33,7 +33,12 @@ Pentaho Data Integration uses the Maven framework.
 * This [settings.xml](https://raw.githubusercontent.com/pentaho/maven-parent-poms/master/maven-support-files/settings.xml) in your <user-home>/.m2 directory
 
 #### Building it
-
+```
+插件核心依赖，需要按顺序 mvn install 以下3个项目
+kettle-engine   PDI Engine
+kettle-dbdialog	PDI DB Dialog
+kettle-ui-swt   PDI User Interface
+```
 This is a Maven project, and to build it use the following command:
 
 ```
