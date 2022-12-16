@@ -29,6 +29,7 @@ import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.util.StreamLogger;
 import org.pentaho.di.trans.step.BaseStepData;
 import org.pentaho.di.trans.step.StepDataInterface;
+//import org.pentaho.di.trans.steps.mysqlbulkloader.MySQLBulkLoader;
 
 /**
  * Stores data for the MySQL bulk load step.

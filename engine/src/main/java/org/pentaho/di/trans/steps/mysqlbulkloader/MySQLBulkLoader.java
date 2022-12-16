@@ -52,6 +52,8 @@ import org.pentaho.di.trans.step.StepDataInterface;
 import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
+//import org.pentaho.di.trans.steps.mysqlbulkloader.MySQLBulkLoaderData;
+
 
 /**
  * Performs a streaming bulk load to a MySQL table.
@@ -69,8 +71,8 @@ public class MySQLBulkLoader extends BaseStep implements StepInterface {
   private final long threadWaitTime = 300000;
   private final String threadWaitTimeText = "5min";
 
-  public MySQLBulkLoader( StepMeta stepMeta, StepDataInterface stepDataInterface, int copyNr, TransMeta transMeta,
-      Trans trans ) {
+  public MySQLBulkLoader(StepMeta stepMeta, StepDataInterface stepDataInterface, int copyNr, TransMeta transMeta,
+                          Trans trans ) {
     super( stepMeta, stepDataInterface, copyNr, transMeta, trans );
   }
 
@@ -134,6 +136,8 @@ public class MySQLBulkLoader extends BaseStep implements StepInterface {
       } else {
         data.db.connect( getPartitionID() );
       }
+      if(meta.isTruncate())
+        data.db.truncateTable(meta.getSchemaName(),meta.getTableName());
 
       logBasic( BaseMessages.getString( PKG, "MySQLBulkLoader.Message.CONNECTED",  data.dbDescription ) );
 
@@ -148,7 +152,6 @@ public class MySQLBulkLoader extends BaseStep implements StepInterface {
   }
 
   private void executeLoadCommand() throws Exception {
-
     String loadCommand = "";
     loadCommand +=
         "LOAD DATA " + ( meta.isLocalFile() ? "LOCAL" : "" ) + " INFILE '"
@@ -604,7 +607,7 @@ public class MySQLBulkLoader extends BaseStep implements StepInterface {
 
     private Exception ex;
 
-    SqlRunner( MySQLBulkLoaderData data, String loadCommand ) {
+    SqlRunner(MySQLBulkLoaderData data, String loadCommand ) {
       this.data = data;
       this.loadCommand = loadCommand;
     }

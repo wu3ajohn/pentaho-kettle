@@ -159,7 +159,7 @@ public class MySQLBulkLoaderDialog extends BaseStepDialog implements StepDialogI
    */
   private List<ColumnInfo> tableFieldColumns = new ArrayList<ColumnInfo>();
 
-  public MySQLBulkLoaderDialog( Shell parent, Object in, TransMeta transMeta, String sname ) {
+  public MySQLBulkLoaderDialog(Shell parent, Object in, TransMeta transMeta, String sname ) {
     super( parent, (BaseStepMeta) in, transMeta, sname );
     input = (MySQLBulkLoaderMeta) in;
     inputFields = new HashMap<String, Integer>();
@@ -261,6 +261,18 @@ public class MySQLBulkLoaderDialog extends BaseStepDialog implements StepDialogI
     wTable = new TextVar( transMeta, shell, SWT.SINGLE | SWT.LEFT | SWT.BORDER );
     props.setLook( wTable );
     wTable.addModifyListener( lsMod );
+    wTable.addFocusListener(new FocusAdapter() {
+      @Override
+      public void focusLost(FocusEvent focusEvent) {
+        String filename= String.format("%s/%s_%s", MySQLBulkLoaderMeta.FIFO_FILE_NAME,
+                wSchema.getText()!=null? wSchema.getText():"",
+                wTable.getText()!=null? wTable.getText():"") ;
+        if(!filename.equals(wFifoFile.getText())){
+          wFifoFile.setText(filename);
+        }
+      }
+    });
+
     wTable.addFocusListener( lsFocusLost );
     fdTable = new FormData();
     fdTable.left = new FormAttachment( middle, 0 );
@@ -477,14 +489,14 @@ public class MySQLBulkLoaderDialog extends BaseStepDialog implements StepDialogI
     fdlTruncate = new FormData();
     fdlTruncate.left = new FormAttachment( 0, 0 );
     fdlTruncate.right = new FormAttachment( middle, -margin );
-    fdlTruncate.top = new FormAttachment( wIgnore, margin * 2 );
+    fdlTruncate.top = new FormAttachment( wLocal, margin * 2 );
     wlTruncate.setLayoutData( fdlTruncate );
 
     wTruncate = new Button( shell, SWT.CHECK | SWT.LEFT );
     props.setLook( wTruncate );
     fdTruncate = new FormData();
     fdTruncate.left = new FormAttachment( middle, 0 );
-    fdTruncate.top = new FormAttachment( wIgnore, margin * 2 );
+    fdTruncate.top = new FormAttachment( wLocal, margin * 2 );
     fdTruncate.right = new FormAttachment( 100, 0 );
     wTruncate.setLayoutData( fdTruncate );
     wTruncate.addSelectionListener( new SelectionAdapter() {
@@ -510,7 +522,7 @@ public class MySQLBulkLoaderDialog extends BaseStepDialog implements StepDialogI
     props.setLook( wlReturn );
     fdlReturn = new FormData();
     fdlReturn.left = new FormAttachment( 0, 0 );
-    fdlReturn.top = new FormAttachment( wLocal, margin );
+    fdlReturn.top = new FormAttachment( wTruncate, margin );
     wlReturn.setLayoutData( fdlReturn );
 
     int UpInsCols = 3;
