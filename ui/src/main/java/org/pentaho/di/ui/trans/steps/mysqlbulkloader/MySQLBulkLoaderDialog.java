@@ -261,19 +261,6 @@ public class MySQLBulkLoaderDialog extends BaseStepDialog implements StepDialogI
     wTable = new TextVar( transMeta, shell, SWT.SINGLE | SWT.LEFT | SWT.BORDER );
     props.setLook( wTable );
     wTable.addModifyListener( lsMod );
-    wTable.addFocusListener(new FocusAdapter() {
-      @Override
-      public void focusLost(FocusEvent focusEvent) {
-        String filename= String.format("%s/%s_%s", MySQLBulkLoaderMeta.FIFO_FILE_NAME,
-                wSchema.getText()!=null? wSchema.getText():"",
-                wTable.getText()!=null? wTable.getText():"") ;
-        if(!filename.equals(wFifoFile.getText())){
-          wFifoFile.setText(filename);
-        }
-      }
-    });
-
-    wTable.addFocusListener( lsFocusLost );
     fdTable = new FormData();
     fdTable.left = new FormAttachment( middle, 0 );
     fdTable.top = new FormAttachment( wSchema, margin );

@@ -27,7 +27,6 @@ import java.util.List;
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
-import org.pentaho.di.core.annotations.Step;
 import org.pentaho.di.core.injection.AfterInjection;
 import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.ProvidesDatabaseConnectionInformation;
@@ -58,8 +57,6 @@ import org.pentaho.di.trans.step.StepDataInterface;
 import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
-//import org.pentaho.di.trans.steps.mysqlbulkloader.MySQLBulkLoader;
-//import org.pentaho.di.trans.steps.mysqlbulkloader.MySQLBulkLoaderData;
 import org.pentaho.metastore.api.IMetaStore;
 import org.w3c.dom.Node;
 
@@ -80,8 +77,6 @@ import org.w3c.dom.Node;
  *
  * @author Matt Casters<br>
  */
-@Step(id = "MySQLBulkLoader", name = "MySQLBulkLoader", description = "MySQLBulkLoader", image = "cn/ajohn/da/pdi/step/resources/dbf.svg",
-        categoryDescription = "Custom")
 @InjectionSupported( localizationPrefix = "MySQLBulkLoader.Injection.", groups = { "FIELDS" } )
 public class MySQLBulkLoaderMeta extends BaseStepMeta implements StepMetaInterface,
     ProvidesDatabaseConnectionInformation {
@@ -92,7 +87,6 @@ public class MySQLBulkLoaderMeta extends BaseStepMeta implements StepMetaInterfa
   public static final int FIELD_FORMAT_TYPE_TIMESTAMP = 2;
   public static final int FIELD_FORMAT_TYPE_NUMBER = 3;
   public static final int FIELD_FORMAT_TYPE_STRING_ESCAPE = 4;
-  public static final String FIFO_FILE_NAME= "/tmp/fifo-mysql";
 
   private static final String[] fieldFormatTypeCodes = { "OK", "DATE", "TIMESTAMP", "NUMBER", "STRING_ESC" };
   private static final String[] fieldFormatTypeDescriptions = {
@@ -294,7 +288,7 @@ public class MySQLBulkLoaderMeta extends BaseStepMeta implements StepMetaInterfa
     schemaName = "";
     tableName = BaseMessages.getString( PKG, "MySQLBulkLoaderMeta.DefaultTableName" );
     encoding = "";
-    fifoFileName = FIFO_FILE_NAME;
+    fifoFileName = "/tmp/fifo";
     delimiter = "\t";
     enclosure = "\"";
     escapeChar = "\\";
