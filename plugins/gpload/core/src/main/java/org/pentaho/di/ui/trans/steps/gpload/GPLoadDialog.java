@@ -109,6 +109,8 @@ public class GPLoadDialog extends BaseStepDialog implements StepDialogInterface 
   private TextVar wLogFile;
   private TextVar wNullAs;
   private Combo wEncoding;
+  private TextVar wPreSQL;
+  private TextVar wPostSQL;
   private Button wEraseFiles;
   private GPLoadMeta input;
   private TextVar wDelimiter;
@@ -383,6 +385,8 @@ public class GPLoadDialog extends BaseStepDialog implements StepDialogInterface 
     wDataFile.addSelectionListener( lsDef );
     wLogFile.addSelectionListener( lsDef );
     wNullAs.addSelectionListener( lsDef );
+    wPreSQL.addSelectionListener( lsDef );
+    wPostSQL.addSelectionListener( lsDef );
 
     // Detect X or ALT-F4 or something that kills this window...
     shell.addShellListener( new ShellAdapter() {
@@ -676,6 +680,12 @@ public class GPLoadDialog extends BaseStepDialog implements StepDialogInterface 
     if ( input.getEncoding() != null ) {
       wEncoding.setText( input.getEncoding() );
     }
+    if ( input.getPreSQL() != null ) {
+      wPreSQL.setText( input.getPreSQL() );
+    }
+    if ( input.getPostSQL() != null ) {
+      wPostSQL.setText( input.getPostSQL() );
+    }
     if ( input.getLocalhostPort() != null ) {
       wLocalhostPort.setText( input.getLocalhostPort() );
     }
@@ -772,6 +782,8 @@ public class GPLoadDialog extends BaseStepDialog implements StepDialogInterface 
     inf.setLogFile( wLogFile.getText() );
     inf.setNullAs( wNullAs.getText() );
     inf.setEncoding( wEncoding.getText() );
+    inf.setPreSQL( wPreSQL.getText() );
+    inf.setPostSQL( wPostSQL.getText() );
     inf.setEraseFiles( wEraseFiles.getSelection() );
     inf.setLocalhostPort( wLocalhostPort.getText() );
     inf.setDelimiter( wDelimiter.getText() );
@@ -1360,6 +1372,44 @@ public class GPLoadDialog extends BaseStepDialog implements StepDialogInterface 
     fdEncoding.right = new FormAttachment( 75, 0 );
     wEncoding.setLayoutData( fdEncoding );
     wEncoding.addModifyListener( lsMod );
+
+    // Pre SQL
+    Label wlPreSQL = new Label( wGPConfigTabComp, SWT.RIGHT );
+    wlPreSQL.setText( "Pre SQL" );
+    props.setLook( wlPreSQL );
+    FormData fdlPreSQL = new FormData();
+    fdlPreSQL.left = new FormAttachment( 0, 0 );
+    fdlPreSQL.top = new FormAttachment( wEncoding, margin );
+    fdlPreSQL.right = new FormAttachment( middle, -margin );
+    wlPreSQL.setLayoutData( fdlPreSQL );
+
+    wPreSQL = new TextVar( transMeta, wGPConfigTabComp, SWT.SINGLE | SWT.LEFT | SWT.BORDER );
+    props.setLook( wPreSQL );
+    wPreSQL.addModifyListener( lsMod );
+    FormData fdPreSQL = new FormData();
+    fdPreSQL.left = new FormAttachment( middle, 0 );
+    fdPreSQL.top = new FormAttachment( wEncoding, margin );
+    fdPreSQL.right = new FormAttachment( 75, 0 );
+    wPreSQL.setLayoutData( fdPreSQL );
+
+    // Post SQL
+    Label wlPostSQL = new Label( wGPConfigTabComp, SWT.RIGHT );
+    wlPostSQL.setText( "Post SQL" );
+    props.setLook( wlPostSQL );
+    FormData fdlPostSQL = new FormData();
+    fdlPostSQL.left = new FormAttachment( 0, 0 );
+    fdlPostSQL.top = new FormAttachment( wPreSQL, margin );
+    fdlPostSQL.right = new FormAttachment( middle, -margin );
+    wlPostSQL.setLayoutData( fdlPostSQL );
+
+    wPostSQL = new TextVar( transMeta, wGPConfigTabComp, SWT.SINGLE | SWT.LEFT | SWT.BORDER );
+    props.setLook( wPostSQL );
+    wPostSQL.addModifyListener( lsMod );
+    FormData fdPostSQL = new FormData();
+    fdPostSQL.left = new FormAttachment( middle, 0 );
+    fdPostSQL.top = new FormAttachment( wPreSQL, margin );
+    fdPostSQL.right = new FormAttachment( 75, 0 );
+    wPostSQL.setLayoutData( fdPostSQL );
 
     wGPConfigTabComp.layout();
     tabItem.setControl( wGPConfigTabComp );

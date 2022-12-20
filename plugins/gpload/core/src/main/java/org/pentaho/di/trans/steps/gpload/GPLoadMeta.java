@@ -145,6 +145,12 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
   @Injection( name = "ENCODING", group = "GP_CONFIG" )
   private String encoding;
 
+  @Injection( name = "Pre SQL", group = "GP_CONFIG" )
+  private String preSQL;
+
+  @Injection( name = "Post SQL", group = "GP_CONFIG" )
+  private String postSQL;
+
   /** Erase files after use */
   @Injection( name = "ERASE_FILE" )
   private boolean eraseFiles;
@@ -339,6 +345,8 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
       nullAs = XMLHandler.getTagValue( stepnode, "null_as" );
       eraseFiles = "Y".equalsIgnoreCase( XMLHandler.getTagValue( stepnode, "erase_files" ) );
       encoding = XMLHandler.getTagValue( stepnode, "encoding" );
+      preSQL = XMLHandler.getTagValue( stepnode, "pre_sql" );
+      postSQL = XMLHandler.getTagValue( stepnode, "post_sql" );
       updateCondition = XMLHandler.getTagValue( stepnode, "update_condition" );
 
       Node localHostsNode = XMLHandler.getSubNode( stepnode, "local_hosts" );
@@ -402,6 +410,8 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
     logFile = "";
     nullAs = "";
     encoding = "";
+    preSQL = "";
+    postSQL = "";
     delimiter = ",";
     encloseNumbers = false;
     eraseFiles = true;
@@ -430,6 +440,8 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
     retval.append( "    " ).append( XMLHandler.addTagValue( "null_as", nullAs ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "erase_files", eraseFiles ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "encoding", encoding ) );
+    retval.append( "    " ).append( XMLHandler.addTagValue( "pre_sql", preSQL) );
+    retval.append( "    " ).append( XMLHandler.addTagValue( "post_sql", postSQL) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "enclose_numbers", ( encloseNumbers ? "Y" : "N" ) ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "localhost_port", localhostPort ) );
     retval.append( "    " ).append( XMLHandler.addTagValue( "update_condition", updateCondition ) );
@@ -471,6 +483,8 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
       nullAs = rep.getStepAttributeString( id_step, "null_as" );
       eraseFiles = rep.getStepAttributeBoolean( id_step, "erase_files" );
       encoding = rep.getStepAttributeString( id_step, "encoding" );
+      preSQL=rep.getStepAttributeString( id_step, "pre_sql" );
+      postSQL=rep.getStepAttributeString( id_step, "post_sql" );
       localhostPort = rep.getStepAttributeString( id_step, "localhost_port" );
       encloseNumbers =
           ( rep.getStepAttributeString( id_step, "enclose_numbers" ).equalsIgnoreCase( "Y" ) ? true : false );
@@ -516,6 +530,8 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
       rep.saveStepAttribute( id_transformation, id_step, "null_as", nullAs );
       rep.saveStepAttribute( id_transformation, id_step, "erase_files", eraseFiles );
       rep.saveStepAttribute( id_transformation, id_step, "encoding", encoding );
+      rep.saveStepAttribute( id_transformation, id_step, "pre_sql", preSQL);
+      rep.saveStepAttribute( id_transformation, id_step, "post_sql", postSQL);
       rep.saveStepAttribute( id_transformation, id_step, "enclose_numbers", ( encloseNumbers ? "Y" : "N" ) );
       rep.saveStepAttribute( id_transformation, id_step, "localhost_port", localhostPort );
       rep.saveStepAttribute( id_transformation, id_step, "update_condition", updateCondition );
@@ -869,6 +885,8 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
     this.encoding = encoding;
   }
 
+
+
   public void setDelimiter( String delimiter ) {
     this.delimiter = delimiter;
   }
@@ -987,5 +1005,21 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
     matchColumn = rtnBoolArray[ 0 ];
     updateColumn = rtnBoolArray[ 1 ];
 
+  }
+
+  public String getPreSQL() {
+    return preSQL;
+  }
+
+  public void setPreSQL(String preSQL) {
+    this.preSQL = preSQL;
+  }
+
+  public String getPostSQL() {
+    return postSQL;
+  }
+
+  public void setPostSQL(String postSQL) {
+    this.postSQL = postSQL;
   }
 }

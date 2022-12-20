@@ -393,6 +393,17 @@ public class GPLoad extends BaseStep implements StepInterface {
     contents.append( GPLoad.INDENT ).append( "PRELOAD:" ).append( Const.CR );
     contents.append( GPLoad.INDENT ).append( "- TRUNCATE: " ).append( "True" ).append( Const.CR );
 
+    String preSQL = meta.getPreSQL();
+    String postSQL = meta.getPostSQL();
+    if ( !Utils.isEmpty( preSQL ) || !Utils.isEmpty( postSQL )) {
+      contents.append(GPLoad.INDENT).append("SQL:").append(Const.CR);
+    }
+    if (!Utils.isEmpty( preSQL ))
+      contents.append(GPLoad.INDENT).append("- BEFORE: ").append( GPLoad.DOUBLE_QUOTE )
+              .append( environmentSubstitute( preSQL ) ).append( GPLoad.DOUBLE_QUOTE ).append(Const.CR);
+    if (!Utils.isEmpty( postSQL ))
+      contents.append(GPLoad.INDENT).append("- AFTER: ").append( GPLoad.DOUBLE_QUOTE )
+          .append(environmentSubstitute( postSQL )).append( GPLoad.DOUBLE_QUOTE ).append(Const.CR);
     return contents.toString();
   }
 
