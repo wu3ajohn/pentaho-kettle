@@ -51,6 +51,35 @@
     </layout>
   </appender>
 
+    <appender name="pdi-log-channel-appender" class="org.apache.log4j.rolling.RollingFileAppender">
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="ActiveFileName"  value="logs/channel.log" />
+            <param name="FileNamePattern" value="logs/channel.%d{yyyy-MM-dd}.log" />
+        </rollingPolicy>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss}\t%-5p\t&lt;%t&gt;\t%m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="pdi-log-trans-appender" class="org.apache.log4j.rolling.RollingFileAppender">
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="ActiveFileName"  value="logs/trans.log" />
+            <param name="FileNamePattern" value="logs/trans.%d{yyyy-MM-dd}.log" />
+        </rollingPolicy>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss}\t%-5p\t&lt;%t&gt;\t%m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="pdi-log-step-appender" class="org.apache.log4j.rolling.RollingFileAppender">
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="ActiveFileName"  value="logs/step.log" />
+            <param name="FileNamePattern" value="logs/step.%d{yyyy-MM-dd}.log" />
+        </rollingPolicy>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss}\t%-5p\t&lt;%t&gt;\t%m%n"/>
+        </layout>
+    </appender>
    <!-- ================== -->
    <!-- Log4JDBC Appenders -->
    <!-- ================== -->
@@ -135,6 +164,18 @@
     <priority value="INFO"/>
   </category>
 
+    <logger name="ChannelLog" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="pdi-log-channel-appender"/>
+    </logger>
+    <logger name="StepLog" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="pdi-log-step-appender"/>
+    </logger>
+    <logger name="TransLog" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="pdi-log-trans-appender"/>
+    </logger>
    <!-- ======================= -->
    <!-- Setup the Root category -->
    <!-- ======================= -->

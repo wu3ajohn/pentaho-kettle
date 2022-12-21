@@ -56,6 +56,7 @@ import com.google.common.base.Preconditions;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.vfs2.FileName;
 import org.apache.commons.vfs2.FileObject;
+import org.apache.log4j.Logger;
 import org.pentaho.di.base.IMetaFileCache;
 import org.pentaho.di.cluster.SlaveServer;
 import org.pentaho.di.core.BlockingBatchingRowSet;
@@ -561,6 +562,9 @@ public class Trans implements VariableSpace, NamedParams, HasLogChannelInterface
   private static final int TRANS_FINISHED_BLOCKING_QUEUE_SIZE =
     Integer.parseInt( System.getProperty( Const.KETTLE_TRANS_FINISHED_BLOCKING_QUEUE_SIZE, "200" ) );
 
+  private static Logger channelLoger = Logger.getLogger("ChannelLog");
+  private static Logger transLoger = Logger.getLogger("TransLog");
+  private static Logger stepLoger = Logger.getLogger("StepLog");
   /**
    * Instantiates a new transformation.
    */
@@ -2484,12 +2488,13 @@ public class Trans implements VariableSpace, NamedParams, HasLogChannelInterface
 
         // If we need to write out the step logging information, do so at the end of the transformation too...
         //
-        StepLogTable stepLogTable = transMeta.getStepLogTable();
-        if ( stepLogTable.isDefined() ) {
+        //StepLogTable stepLogTable = transMeta.getStepLogTable();
+        //if ( stepLogTable.isDefined() ) {
           addTransListener( new TransAdapter() {
             @Override
             public void transFinished( Trans trans ) throws KettleException {
               try {
+                writeTransLogInformation();
                 writeStepLogInformation();
               } catch ( KettleException e ) {
                 throw new KettleException( BaseMessages.getString( PKG,
@@ -2497,12 +2502,12 @@ public class Trans implements VariableSpace, NamedParams, HasLogChannelInterface
               }
             }
           } );
-        }
+        //}
 
         // If we need to write the log channel hierarchy and lineage information, add a listener for that too...
         //
-        ChannelLogTable channelLogTable = transMeta.getChannelLogTable();
-        if ( channelLogTable.isDefined() ) {
+        //ChannelLogTable channelLogTable = transMeta.getChannelLogTable();
+//        if ( channelLogTable.isDefined() ) {
           addTransListener( new TransAdapter() {
             @Override
             public void transFinished( Trans trans ) throws KettleException {
@@ -2514,7 +2519,7 @@ public class Trans implements VariableSpace, NamedParams, HasLogChannelInterface
               }
             }
           } );
-        }
+//        }
 
         // See if we need to write the step performance records at intervals too...
         //
@@ -2570,9 +2575,20 @@ public class Trans implements VariableSpace, NamedParams, HasLogChannelInterface
    * @throws KettleException if any errors occur during logging
    */
   protected void writeLogChannelInformation() throws KettleException {
-    Database db = null;
     ChannelLogTable channelLogTable = transMeta.getChannelLogTable();
+    List<LoggingHierarchy> loggingHierarchyList = getLoggingHierarchy();
+    for ( LoggingHierarchy loggingHierarchy : loggingHierarchyList ) {
+      RowMetaAndData logRecord = channelLogTable.getLogRecord( LogStatus.START, loggingHierarchy, null );
+      if(null==logRecord)continue;
+//      RowMetaInterface rowMetaInterface = logRecord.getRowMeta();
+      Object[] rowData = logRecord.getData();
+      channelLoger.info(String.format("%s\t%s\t%s\t%s\t%s",transMeta.getRepositoryDirectory().getPath(),transMeta.getName(),
+              loggingHierarchy.getBatchId(),loggingHierarchy.getRootChannelId(),  StringUtils.join(rowData,'\t')));
+    }
 
+    if ( !channelLogTable.isDefined() ) return;
+
+    Database db = null;
     // PDI-7070: If parent trans or job has the same channel logging info, don't duplicate log entries
     Trans t = getParentTrans();
     if ( t != null ) {
@@ -2596,7 +2612,6 @@ public class Trans implements VariableSpace, NamedParams, HasLogChannelInterface
       db.connect();
       db.setCommit( logCommitSize );
 
-      List<LoggingHierarchy> loggingHierarchyList = getLoggingHierarchy();
       for ( LoggingHierarchy loggingHierarchy : loggingHierarchyList ) {
         db.writeLogRecord( channelLogTable, LogStatus.START, loggingHierarchy, null );
       }
@@ -2612,14 +2627,43 @@ public class Trans implements VariableSpace, NamedParams, HasLogChannelInterface
     }
   }
 
+  protected void writeTransLogInformation() throws KettleException {
+      LogStatus status;
+      if ( isStopped() ) {
+        status = LogStatus.STOP;
+      } else if ( isFinished() ) {
+        status = LogStatus.END;
+      } else if ( isPaused() ) {
+        status = LogStatus.PAUSED;
+      } else {
+        status = LogStatus.RUNNING;
+      }
+      TransLogTable transLogTable = transMeta.getTransLogTable();
+      logDate = new Date();
+
+      RowMetaAndData logRecord = transLogTable.getLogRecord( status, this, null );
+      Object[] rowData = logRecord.getData();
+      transLoger.info(String.format("%s\t%s\t%s\t%s\t%s",transMeta.getRepositoryDirectory().getPath(),transMeta.getName(),
+              getBatchId(), getLogChannelId(), StringUtils.join(rowData,'\t')));
+  }
   /**
    * Writes step information to a step logging table (if one has been configured).
    *
    * @throws KettleException if any errors occur during logging
    */
   protected void writeStepLogInformation() throws KettleException {
+    StepLogTable stepLogTable = transMeta.getStepLogTable();
+
+    for ( StepMetaDataCombi combi : getSteps() ) {
+      RowMetaAndData logRecord = stepLogTable.getLogRecord( LogStatus.START, combi, null );
+      if(null==logRecord)continue;
+      Object[] rowData = logRecord.getData();
+      stepLoger.info(String.format("%s\t%s\t%s\t%s\t%s",transMeta.getRepositoryDirectory().getPath(),transMeta.getName(),
+              batchId,getLogChannelId(),  StringUtils.join(rowData,'\t')));
+    }
+    if ( !stepLogTable.isDefined() ) return;
     Database db = null;
-    StepLogTable stepLogTable = getTransMeta().getStepLogTable();
+
     try {
       db = createDataBase( stepLogTable.getDatabaseMeta() );
       db.shareVariablesWith( this );
@@ -2827,7 +2871,6 @@ public class Trans implements VariableSpace, NamedParams, HasLogChannelInterface
         }
 
         // Write to the standard transformation log table...
-        //
         if ( !Utils.isEmpty( logTable ) ) {
           ldb.writeLogRecord( transLogTable, status, this, null );
         }
