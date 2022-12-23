@@ -562,9 +562,9 @@ public class Trans implements VariableSpace, NamedParams, HasLogChannelInterface
   private static final int TRANS_FINISHED_BLOCKING_QUEUE_SIZE =
     Integer.parseInt( System.getProperty( Const.KETTLE_TRANS_FINISHED_BLOCKING_QUEUE_SIZE, "200" ) );
 
-  private static Logger channelLoger = Logger.getLogger("ChannelLog");
-  private static Logger transLoger = Logger.getLogger("TransLog");
-  private static Logger stepLoger = Logger.getLogger("StepLog");
+  private static Logger channelLoger = Logger.getLogger("channel-log");
+  private static Logger transLoger = Logger.getLogger("trans-log");
+  private static Logger stepLoger = Logger.getLogger("step-log");
   /**
    * Instantiates a new transformation.
    */
