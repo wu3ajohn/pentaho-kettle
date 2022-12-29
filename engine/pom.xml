@@ -922,10 +922,16 @@
       <scope>runtime</scope>
     </dependency>
 
+<!--    <dependency>-->
+<!--      <groupId>log4j</groupId>-->
+<!--      <artifactId>log4j</artifactId>-->
+<!--      <version>1.2.17</version>-->
+<!--    </dependency>-->
+    <!-- https://mvnrepository.com/artifact/org.graylog2/syslog4j -->
     <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
+      <groupId>org.graylog2</groupId>
+      <artifactId>syslog4j</artifactId>
+      <version>0.9.46</version>
     </dependency>
 
     <!-- Test dependencies -->

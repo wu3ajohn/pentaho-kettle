@@ -56,7 +56,7 @@
             <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss}\t%-5p\t[%t]\t%m%n"/>
         </layout>
     </appender>
-	
+	<!-- 
     <appender name="pdi-log-channel-syslog-appender" class="org.apache.log4j.net.SyslogAppender">
         <param name="SyslogHost" value="10.84.155.127"/>
         <param name="Facility" value="local0"/>
@@ -64,7 +64,36 @@
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="pdi-channel %d{yyyy-MM-dd HH:mm:ss}\t[%t]\t%-5p\%m%n"/>
         </layout>
+    </appender>-->
+    <appender name="pdi-log-channel-syslog-appender" class="org.productivity.java.syslog4j.impl.log4j.Syslog4jAppender">
+		<param name="Protocol" value="udp"/>
+        <param name="SyslogHost" value="10.84.155.126"/>
+		<param name="Port" value="514"/>
+        <param name="Facility" value="local0"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="pdi-channel %d{yyyy-MM-dd HH:mm:ss}\t[%t]\t%-5p\%m%n"/>
+        </layout>
     </appender>
+    <appender name="pdi-log-trans-syslog-appender" class="org.productivity.java.syslog4j.impl.log4j.Syslog4jAppender">
+		<param name="Protocol" value="udp"/>
+        <param name="SyslogHost" value="10.84.155.126"/>
+		<param name="Port" value="514"/>
+        <param name="Facility" value="local0"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="pdi-trans %d{yyyy-MM-dd HH:mm:ss}\t[%t]\t%-5p\%m%n"/>
+        </layout>
+    </appender>
+    <appender name="pdi-log-step-syslog-appender" class="org.productivity.java.syslog4j.impl.log4j.Syslog4jAppender">
+		<param name="Protocol" value="udp"/>
+        <param name="SyslogHost" value="10.84.155.126"/>
+		<param name="Port" value="514"/>
+        <param name="Facility" value="local0"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="pdi-step %d{yyyy-MM-dd HH:mm:ss}\t[%t]\t%-5p\%m%n"/>
+        </layout>
+    </appender>
+	
+	
    <!-- Append messages to the console -->
    <appender name="PENTAHOCONSOLE" class="org.apache.log4j.ConsoleAppender">
       <param name="Target" value="System.out"/>
@@ -110,10 +139,12 @@
     <logger name="step-log" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="pdi-log-step-file-appender"/>
+		<appender-ref ref="pdi-log-step-syslog-appender"/>
     </logger>
     <logger name="trans-log" additivity="false">
         <level value="INFO"/>
         <appender-ref ref="pdi-log-trans-file-appender"/>
+		<appender-ref ref="pdi-log-trans-syslog-appender"/>
     </logger>
 
    <root>

@@ -2582,8 +2582,11 @@ public class Trans implements VariableSpace, NamedParams, HasLogChannelInterface
       if(null==logRecord)continue;
 //      RowMetaInterface rowMetaInterface = logRecord.getRowMeta();
       Object[] rowData = logRecord.getData();
-      channelLoger.info(String.format("%s\t%s\t%s\t%s\t%s",transMeta.getRepositoryDirectory().getPath(),transMeta.getName(),
-              loggingHierarchy.getBatchId(),loggingHierarchy.getRootChannelId(),  StringUtils.join(rowData,'\t')));
+//      channelLoger.info(String.format("%s\t%s\t%s\t%s\t%s",transMeta.getRepositoryDirectory().getPath(),transMeta.getName(),
+//              loggingHierarchy.getBatchId(),loggingHierarchy.getRootChannelId(),  StringUtils.join(rowData,'\t')));
+      channelLoger.info(String.format("%s\t%s\t%s",transMeta.getRepositoryDirectory().getPath(),
+              transMeta.getName(),StringUtils.join(rowData,'\t')));
+
     }
 
     if ( !channelLogTable.isDefined() ) return;
