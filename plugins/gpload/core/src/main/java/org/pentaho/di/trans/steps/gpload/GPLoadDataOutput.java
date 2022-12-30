@@ -27,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.pentaho.di.core.Const;
+import org.pentaho.di.core.util.StringUtil;
 import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.logging.LogChannel;
@@ -174,10 +175,10 @@ public class GPLoadDataOutput {
       sdfDateTime = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss.SSS" );
     }
 
+    boolean enclosure_is_not_empty = !StringUtil.isEmpty(enclosure);
     // Write the data to the output
     ValueMetaInterface v = null;
     int number = 0;
-
     for ( int i = 0; i < fieldNumbers.length; i++ ) {
       // TODO: variable substitution
       if ( i != 0 ) {
@@ -190,8 +191,10 @@ public class GPLoadDataOutput {
         // TODO (SB): special check for null in case of Strings.
         switch ( v.getType() ) {
           case ValueMetaInterface.TYPE_STRING:
-            output.print(enclosure);
-            output.print(enclosure);
+            if(enclosure_is_not_empty){
+              output.print(enclosure);
+              output.print(enclosure);
+            }
             break;
           default:
             output.print(nullAs);
@@ -200,22 +203,28 @@ public class GPLoadDataOutput {
         switch ( v.getType() ) {
           case ValueMetaInterface.TYPE_STRING:
             String s = mi.getString( row, number );
-            if ( s.indexOf( enclosure ) >= 0 ) {
+            if (enclosure_is_not_empty && s.indexOf( enclosure ) >= 0 ) {
               s = createEscapedString( s, enclosure );
             }
-            if ( s.indexOf( "\n" ) >= 0 ) {
-              s = s.replaceAll("\n","\r");//TODO
+            if ( s.indexOf( "\\" ) >= 0 ) {
+              s = s.replaceAll("\\\\","\\\\\\\\");
             }
-            output.print( enclosure );
+            if ( s.indexOf( "\n" ) >= 0 ) {
+              s = s.replaceAll("\n","\\\\n");
+            }
+            if ( s.indexOf( "\r" ) >= 0 ) {
+              s = s.replaceAll("\r","\\\\r");
+            }
+            if(enclosure_is_not_empty)output.print( enclosure );
             output.print( s );
-            output.print( enclosure );
+            if(enclosure_is_not_empty)output.print( enclosure );
             break;
           case ValueMetaInterface.TYPE_INTEGER:
             Long l = mi.getInteger( row, number );
             if ( meta.getEncloseNumbers() ) {
-              output.print( enclosure );
+              if(enclosure_is_not_empty)output.print( enclosure );
               output.print( l );
-              output.print( enclosure );
+              if(enclosure_is_not_empty)output.print( enclosure );
             } else {
               output.print( l );
             }
@@ -223,9 +232,9 @@ public class GPLoadDataOutput {
           case ValueMetaInterface.TYPE_NUMBER:
             Double d = mi.getNumber( row, number );
             if ( meta.getEncloseNumbers() ) {
-              output.print( enclosure );
+              if(enclosure_is_not_empty)output.print( enclosure );
               output.print( d );
-              output.print( enclosure );
+              if(enclosure_is_not_empty)output.print( enclosure );
             } else {
               output.print( d );
             }
@@ -233,28 +242,28 @@ public class GPLoadDataOutput {
           case ValueMetaInterface.TYPE_BIGNUMBER:
             BigDecimal bd = mi.getBigNumber( row, number );
             if ( meta.getEncloseNumbers() ) {
-              output.print( enclosure );
+              if(enclosure_is_not_empty)output.print( enclosure );
               output.print( bd );
-              output.print( enclosure );
+              if(enclosure_is_not_empty)output.print( enclosure );
             } else {
               output.print( bd );
             }
             break;
           case ValueMetaInterface.TYPE_DATE:
             Date dt = mi.getDate( row, number );
-            output.print( enclosure );
+            if(enclosure_is_not_empty)output.print( enclosure );
             output.print( sdfDate.format( dt ) );
-            output.print( enclosure );
+            if(enclosure_is_not_empty)output.print( enclosure );
             break;
           case ValueMetaInterface.TYPE_BOOLEAN:
             Boolean b = mi.getBoolean( row, number );
-            output.print( enclosure );
+            if(enclosure_is_not_empty)output.print( enclosure );
             if ( b.booleanValue() ) {
               output.print( "Y" );
             } else {
               output.print( "N" );
             }
-            output.print( enclosure );
+            if(enclosure_is_not_empty)output.print( enclosure );
             break;
           case ValueMetaInterface.TYPE_BINARY:
             byte[] byt = mi.getBinary( row, number );
@@ -264,9 +273,9 @@ public class GPLoadDataOutput {
             break;
           case ValueMetaInterface.TYPE_TIMESTAMP:
             Date time = mi.getDate( row, number );
-            output.print( enclosure );
+            if(enclosure_is_not_empty)output.print( enclosure );
             output.print( sdfDateTime.format( time ) );
-            output.print( enclosure );
+            if(enclosure_is_not_empty)output.print( enclosure );
             break;
           default:
             throw new KettleException( BaseMessages.getString( PKG, "GPLoadDataOutput.Exception.TypeNotSupported", v

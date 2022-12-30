@@ -151,6 +151,11 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
   @Injection( name = "Post SQL", group = "GP_CONFIG" )
   private String postSQL;
 
+  /** FIFO模式bulkSize=0 **/
+  @Injection( name = "Bulk Size", group = "GP_CONFIG" )
+  private Integer bulkSize=0;
+
+
   /** Erase files after use */
   @Injection( name = "ERASE_FILE" )
   private boolean eraseFiles;
@@ -898,7 +903,9 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
   }
 
   public String getEnclosure() {
-    return "\"";
+//    return "\"";
+//    return "\\x02";
+    return "";
   }
 
   public boolean isEraseFiles() {

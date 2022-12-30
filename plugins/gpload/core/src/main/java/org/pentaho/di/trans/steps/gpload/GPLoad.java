@@ -279,8 +279,8 @@ public class GPLoad extends BaseStep implements StepInterface {
 
     // See also page 155 for formatting information & escaping
     // delimiter validation should have been perfomed
-//    contents.append( GPLoad.INDENT ).append( "- FORMAT: TEXT" ).append( Const.CR );
-    contents.append( GPLoad.INDENT ).append( "- FORMAT: CSV" ).append( Const.CR );
+    contents.append( GPLoad.INDENT ).append( "- FORMAT: TEXT" ).append( Const.CR );
+//    contents.append( GPLoad.INDENT ).append( "- FORMAT: CSV" ).append( Const.CR );
     contents.append( GPLoad.INDENT ).append( "- DELIMITER: " ).append( GPLoad.DOUBLE_QUOTE ).append( delimiter )
         .append( GPLoad.DOUBLE_QUOTE ).append( Const.CR );
 //    if ( !Utils.isEmpty( meta.getNullAs() ) ) {
@@ -294,7 +294,7 @@ public class GPLoad extends BaseStep implements StepInterface {
     String enclosure = meta.getEnclosure();
 
     // For enclosure we do a null check. !Utils.isEmpty will be true if the string is empty.
-    // it is ok to have an empty string
+    //    // it is ok to have an empty string
     if ( enclosure != null ) {
       enclosure = environmentSubstitute( meta.getEnclosure() );
     } else {
