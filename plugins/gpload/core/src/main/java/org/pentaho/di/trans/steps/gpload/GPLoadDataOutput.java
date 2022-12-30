@@ -25,6 +25,7 @@ import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.zip.GZIPOutputStream;
 
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.util.StringUtil;
@@ -99,8 +100,11 @@ public class GPLoadDataOutput {
 
       log.logDetailed( "Creating temporary load file " + dataFile );
       os = new FileOutputStream( dataFile, false );
-      //
 
+
+      //TODO GZIP FILE        必须项。文件位置。可同时制定多个相同格式的文件，入/home/gpadmin/script/*.txt。
+      // 如果是gzip或bzip2文件，会自动解压（在环境变量中设定好gunzip、bunzip2的路径）
+      // new GZIPOutputStream(os) ,代码未运行成功
       String encoding = meta.getEncoding();
       if ( Utils.isEmpty( encoding ) ) {
         // Use the default encoding.
