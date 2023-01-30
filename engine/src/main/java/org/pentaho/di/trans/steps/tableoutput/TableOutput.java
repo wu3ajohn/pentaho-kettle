@@ -324,6 +324,7 @@ public class TableOutput extends BaseStep implements StepInterface {
         }
       }
     } catch ( KettleDatabaseBatchException be ) {
+      incrementLinesRejected();
       errorMessage = be.toString();
       batchProblem = true;
       sendToErrorRow = true;
@@ -348,6 +349,7 @@ public class TableOutput extends BaseStep implements StepInterface {
         throw new KettleException( msg.toString(), be );
       }
     } catch ( KettleDatabaseException dbe ) {
+      incrementLinesRejected();
       if ( getStepMeta().isDoingErrorHandling() ) {
         if ( isRowLevel() ) {
           logRowlevel( "Written row to error handling : " + getInputRowMeta().getString( r ) );
@@ -398,6 +400,7 @@ public class TableOutput extends BaseStep implements StepInterface {
           outputRowData = null;
 
           processBatchException( errorMessage, updateCounts, exceptionsList );
+          incrementLinesRejected();
         } else {
           // Simply add this row to the error row
           putError( rowMeta, r, 1L, errorMessage, null, "TOP001" );
