@@ -400,7 +400,7 @@ public class TableOutput extends BaseStep implements StepInterface {
           outputRowData = null;
 
           processBatchException( errorMessage, updateCounts, exceptionsList );
-          incrementLinesRejected();
+          //incrementLinesRejected();
         } else {
           // Simply add this row to the error row
           putError( rowMeta, r, 1L, errorMessage, null, "TOP001" );
