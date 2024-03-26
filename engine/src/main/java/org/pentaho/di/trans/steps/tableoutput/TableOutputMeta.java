@@ -29,6 +29,7 @@ import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.injection.Injection;
 import org.pentaho.di.core.injection.InjectionSupported;
+import org.pentaho.di.core.util.StringUtil;
 import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.ProvidesModelerMeta;
 import org.pentaho.di.core.SQLStatement;
@@ -90,7 +91,10 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
     setTruncateTable( "Y".equalsIgnoreCase( value ) );
   }
   private boolean truncateTable;
-
+  @Injection( name = "PRE_SQL" )
+  private String preSQL;
+  @Injection( name = "POST_SQL" )
+  private String postSQL;
   /**
    * Do we explicitly select the fields to update in the database
    */
@@ -409,6 +413,33 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
     this.truncateTable = truncateTable;
   }
 
+  public String getPreSQL() {
+    return StringUtil.isEmpty(preSQL)?"":preSQL;
+  }
+
+  /**
+   * Assign the table name to write to.
+   *
+   * @param preSQL The table name to set
+   */
+  public void setPreSQL( String preSQL ) {
+    this.preSQL = preSQL;
+  }
+
+  public String getPostSQL() {
+    return StringUtil.isEmpty(postSQL)?"":postSQL;
+  }
+
+  /**
+   * Assign the table name to write to.
+   *
+   * @param postSQL The table name to set
+   */
+  public void setPostSQL( String postSQL ) {
+    this.postSQL = postSQL;
+  }
+
+
   /**
    * @param ignoreErrors The ignore errors flag to set.
    */
@@ -462,6 +493,9 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
       ignoreErrors = "Y".equalsIgnoreCase( XMLHandler.getTagValue( stepnode, "ignore_errors" ) );
       useBatchUpdate = "Y".equalsIgnoreCase( XMLHandler.getTagValue( stepnode, "use_batch" ) );
 
+      preSQL = XMLHandler.getTagValue( stepnode, "preSQL" );
+      postSQL = XMLHandler.getTagValue( stepnode, "postSQL" );
+
       // If not present it will be false to be compatible with pre-v3.2
       specifyFields = "Y".equalsIgnoreCase( XMLHandler.getTagValue( stepnode, "specify_fields" ) );
 
@@ -497,6 +531,8 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
     databaseMeta = null;
     tableName = "";
     commitSize = "1000";
+    preSQL = "";
+    postSQL = "";
 
     partitioningEnabled = false;
     partitioningMonthly = true;
@@ -519,6 +555,10 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
     retval.append( "    " + XMLHandler.addTagValue( "truncate", truncateTable ) );
     retval.append( "    " + XMLHandler.addTagValue( "ignore_errors", ignoreErrors ) );
     retval.append( "    " + XMLHandler.addTagValue( "use_batch", useBatchUpdate ) );
+
+    retval.append( "    " + XMLHandler.addTagValue( "preSQL", preSQL ) );
+    retval.append( "    " + XMLHandler.addTagValue( "postSQL", postSQL ) );
+
     retval.append( "    " + XMLHandler.addTagValue( "specify_fields", specifyFields ) );
 
     retval.append( "    " + XMLHandler.addTagValue( "partitioning_enabled", partitioningEnabled ) );
@@ -558,6 +598,9 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
       useBatchUpdate = rep.getStepAttributeBoolean( id_step, "use_batch" );
       specifyFields = rep.getStepAttributeBoolean( id_step, "specify_fields" );
 
+      preSQL = rep.getStepAttributeString( id_step, "preSQL" );
+      postSQL = rep.getStepAttributeString( id_step, "postSQL" );
+
       partitioningEnabled = rep.getStepAttributeBoolean( id_step, "partitioning_enabled" );
       partitioningField = rep.getStepAttributeString( id_step, "partitioning_field" );
       partitioningDaily = rep.getStepAttributeBoolean( id_step, "partitioning_daily" );
@@ -596,6 +639,9 @@ public class TableOutputMeta extends BaseStepMeta implements StepMetaInterface, 
       rep.saveStepAttribute( id_transformation, id_step, "ignore_errors", ignoreErrors );
       rep.saveStepAttribute( id_transformation, id_step, "use_batch", useBatchUpdate );
       rep.saveStepAttribute( id_transformation, id_step, "specify_fields", specifyFields );
+
+      rep.saveStepAttribute( id_transformation, id_step, "preSQL", preSQL );
+      rep.saveStepAttribute( id_transformation, id_step, "postSQL", postSQL );
 
       rep.saveStepAttribute( id_transformation, id_step, "partitioning_enabled", partitioningEnabled );
       rep.saveStepAttribute( id_transformation, id_step, "partitioning_field", partitioningField );

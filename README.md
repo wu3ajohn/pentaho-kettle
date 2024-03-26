@@ -1,4 +1,13 @@
 # Pentaho Data Integration # 
+```
+https://repo.orl.eng.hitachivantara.com/ui/native/pnt-mvn/org/pentaho/pentaho-ce-jar-parent-pom
+
+插件核心依赖，需要按顺序 mvn install 以下3个项目
+kettle-engine   PDI Engine                      lib
+kettle-dbdialog	PDI DB Dialog                   lib
+kettle-ui-swt   PDI User Interface              lib
+plugins-gpload-core PDI GPLoad Plugin Core      plugins/kettle-gpload-plugin
+```
 
 Pentaho Data Integration ( ETL ) a.k.a Kettle
 
@@ -33,12 +42,7 @@ Pentaho Data Integration uses the Maven framework.
 * This [settings.xml](https://raw.githubusercontent.com/pentaho/maven-parent-poms/master/maven-support-files/settings.xml) in your <user-home>/.m2 directory
 
 #### Building it
-```
-插件核心依赖，需要按顺序 mvn install 以下3个项目
-kettle-engine   PDI Engine
-kettle-dbdialog	PDI DB Dialog
-kettle-ui-swt   PDI User Interface
-```
+
 This is a Maven project, and to build it use the following command:
 
 ```

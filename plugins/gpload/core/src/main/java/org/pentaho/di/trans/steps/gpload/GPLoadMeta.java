@@ -23,6 +23,7 @@ import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.injection.AfterInjection;
+import org.pentaho.di.core.util.StringUtil;
 import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.core.SQLStatement;
 import org.pentaho.di.core.annotations.Step;
@@ -858,8 +859,10 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
   }
 
   public String getNullAs() {
-//    return nullAs;
-    return "\\N";
+    if(StringUtil.isEmpty(this.nullAs))
+      return "\\N";
+    else
+      return this.nullAs;
   }
 
   public void setNullAs( String nullAs ) {
@@ -897,14 +900,13 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
   }
 
   public String getDelimiter() {
-//    return delimiter;
-    return "\\x01";
-
+    if(StringUtil.isEmpty(this.delimiter))
+      return "\\x01";
+    else
+      return this.delimiter;
   }
 
   public String getEnclosure() {
-//    return "\"";
-//    return "\\x02";
     return "";
   }
 
@@ -917,8 +919,10 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
   }
 
   public String getMaxErrors() {
-//    return maxErrors;
-    return "0";
+    if(StringUtil.isEmpty(this.maxErrors))
+      return "0";
+    else
+      return this.maxErrors;
   }
 
   public void setMaxErrors( String maxErrors ) {
@@ -937,8 +941,12 @@ public class GPLoadMeta extends BaseStepMeta implements StepMetaInterface {
     this.localHosts = localHosts;
   }
 
+  static final String [] hosts = new String [] {"${GPLOAD_HOST}"};
   public String[] getLocalHosts() {
-    return localHosts;
+    if(localHosts == null || localHosts.length==0)
+      return hosts;
+    else
+      return localHosts;
   }
 
   public void setLocalhostPort( String localhostPort ) {

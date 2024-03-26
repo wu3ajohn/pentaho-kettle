@@ -123,6 +123,14 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
   private Button wTruncate;
   private FormData fdlTruncate, fdTruncate;
 
+  private Label wlPreSQL;
+  private TextVar wPreSQL;
+  private FormData fdlPreSQL, fdPreSQL;
+
+  private Label wlPostSQL;
+  private TextVar wPostSQL;
+  private FormData fdlPostSQL, fdPostSQL;
+  
   private Label wlIgnore;
   private Button wIgnore;
   private FormData fdlIgnore, fdIgnore;
@@ -369,6 +377,48 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
       }
     };
     wTruncate.addSelectionListener( lsSelMod );
+    // PreSQL  ...
+    wlPreSQL = new Label( shell, SWT.RIGHT );
+    wlPreSQL.setText( "Pre SQL" );
+    props.setLook( wlPreSQL );
+    fdlPreSQL = new FormData();
+    fdlPreSQL.left = new FormAttachment( 0, 0 );
+    fdlPreSQL.right = new FormAttachment( middle, -margin );
+    fdlPreSQL.top = new FormAttachment( wTruncate, margin );
+    wlPreSQL.setLayoutData( fdlPreSQL );
+    wPreSQL = new TextVar( transMeta, shell, SWT.SINGLE | SWT.LEFT | SWT.BORDER );
+    props.setLook( wPreSQL );
+    wPreSQL.addModifyListener(  new ModifyListener() {
+      public void modifyText( ModifyEvent e ) {
+        input.setChanged();
+      }
+    } );
+    fdPreSQL = new FormData();
+    fdPreSQL.left = new FormAttachment( middle, 0 );
+    fdPreSQL.top = new FormAttachment( wTruncate, margin );
+    fdPreSQL.right = new FormAttachment( 100, 0 );
+    wPreSQL.setLayoutData( fdPreSQL );
+    // PostSQL  ...
+    wlPostSQL = new Label( shell, SWT.RIGHT );
+    wlPostSQL.setText(  "Post SQL" );
+    props.setLook( wlPostSQL );
+    fdlPostSQL = new FormData();
+    fdlPostSQL.left = new FormAttachment( 0, 0 );
+    fdlPostSQL.right = new FormAttachment( middle, -margin );
+    fdlPostSQL.top = new FormAttachment( wPreSQL, margin );
+    wlPostSQL.setLayoutData( fdlPostSQL );
+    wPostSQL = new TextVar( transMeta, shell, SWT.SINGLE | SWT.LEFT | SWT.BORDER );
+    props.setLook( wPostSQL );
+    wPostSQL.addModifyListener(  new ModifyListener() {
+      public void modifyText( ModifyEvent e ) {
+        input.setChanged();
+      }
+    } );
+    fdPostSQL = new FormData();
+    fdPostSQL.left = new FormAttachment( middle, 0 );
+    fdPostSQL.top = new FormAttachment( wPreSQL, margin );
+    fdPostSQL.right = new FormAttachment( 100, 0 );
+    wPostSQL.setLayoutData( fdPostSQL );
 
     // Ignore errors
     wlIgnore = new Label( shell, SWT.RIGHT );
@@ -376,14 +426,14 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
     props.setLook( wlIgnore );
     fdlIgnore = new FormData();
     fdlIgnore.left = new FormAttachment( 0, 0 );
-    fdlIgnore.top = new FormAttachment( wTruncate, margin );
+    fdlIgnore.top = new FormAttachment( wPostSQL, margin );
     fdlIgnore.right = new FormAttachment( middle, -margin );
     wlIgnore.setLayoutData( fdlIgnore );
     wIgnore = new Button( shell, SWT.CHECK );
     props.setLook( wIgnore );
     fdIgnore = new FormData();
     fdIgnore.left = new FormAttachment( middle, 0 );
-    fdIgnore.top = new FormAttachment( wTruncate, margin );
+    fdIgnore.top = new FormAttachment( wPostSQL, margin );
     fdIgnore.right = new FormAttachment( 100, 0 );
     wIgnore.setLayoutData( fdIgnore );
     wIgnore.addSelectionListener( lsSelMod );
@@ -851,6 +901,8 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
 
     wStepname.addSelectionListener( lsDef );
     wCommit.addSelectionListener( lsDef );
+    wPreSQL.addSelectionListener( lsDef );
+    wPostSQL.addSelectionListener( lsDef );
     wSchema.addSelectionListener( lsDef );
     wTable.addSelectionListener( lsDef );
     wPartField.addSelectionListener( lsDef );
@@ -1275,6 +1327,8 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
     wBatch.setSelection( input.useBatchUpdate() );
 
     wCommit.setText( input.getCommitSize() );
+    wPreSQL.setText( input.getPreSQL() );
+    wPostSQL.setText( input.getPostSQL() );
 
     wUsePart.setSelection( input.isPartitioningEnabled() );
     wPartDaily.setSelection( input.isPartitioningDaily() );
@@ -1323,6 +1377,8 @@ public class TableOutputDialog extends BaseStepDialog implements StepDialogInter
     info.setTableName( wTable.getText() );
     info.setDatabaseMeta( transMeta.findDatabase( wConnection.getText() ) );
     info.setCommitSize( wCommit.getText() );
+    info.setPreSQL( wPreSQL.getText() );
+    info.setPostSQL( wPostSQL.getText() );
     info.setTruncateTable( wTruncate.getSelection() );
     info.setIgnoreErrors( wIgnore.getSelection() );
     info.setUseBatchUpdate( wBatch.getSelection() );

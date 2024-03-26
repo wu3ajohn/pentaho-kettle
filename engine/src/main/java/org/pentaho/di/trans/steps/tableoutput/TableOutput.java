@@ -34,6 +34,7 @@ import org.pentaho.di.core.row.RowDataUtil;
 import org.pentaho.di.core.row.RowMeta;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.util.StringUtil;
 import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.trans.Trans;
@@ -77,6 +78,9 @@ public class TableOutput extends BaseStep implements StepInterface {
       if ( first && meta.truncateTable() ) {
         truncateTable();
       }
+      if ( first && !StringUtil.isEmpty( meta.getPreSQL())) {
+        execPreSQL(meta.getPreSQL());
+      }
       return false;
     }
 
@@ -84,6 +88,9 @@ public class TableOutput extends BaseStep implements StepInterface {
       first = false;
       if ( meta.truncateTable() ) {
         truncateTable();
+      }
+      if ( !StringUtil.isEmpty( meta.getPreSQL()) ) {
+        execPreSQL(meta.getPreSQL());
       }
       data.outputRowMeta = getInputRowMeta().clone();
       meta.getFields( data.outputRowMeta, getStepname(), null, null, this, repository, metaStore );
@@ -574,6 +581,26 @@ public class TableOutput extends BaseStep implements StepInterface {
     }
   }
 
+  void execPreSQL(String preSQL) throws KettleDatabaseException {
+    if ( !meta.isPartitioningEnabled() ) {
+      // Only the first one truncates in a non-partitioned step copy
+      if ( !StringUtil.isEmpty(preSQL)
+              && ( ( getCopy() == 0 && getUniqueStepNrAcrossSlaves() == 0 ) || !Utils.isEmpty( getPartitionID() ) ) ) {
+        data.db.execStatement(environmentSubstitute(preSQL));
+      }
+    }
+  }
+
+  void execPostSQL(String postSQL) throws KettleDatabaseException {
+    if ( !meta.isPartitioningEnabled() ) {
+      // Only the first one truncates in a non-partitioned step copy
+      if ( !StringUtil.isEmpty(postSQL)
+              && ( ( getCopy() == 0 && getUniqueStepNrAcrossSlaves() == 0 ) || !Utils.isEmpty( getPartitionID() ) ) ) {
+        data.db.execStatement( environmentSubstitute(postSQL) );
+      }
+    }
+  }
+
   public void dispose( StepMetaInterface smi, StepDataInterface sdi ) {
     meta = (TableOutputMeta) smi;
     data = (TableOutputData) sdi;
@@ -599,6 +626,11 @@ public class TableOutput extends BaseStep implements StepInterface {
         }
         // Clear the buffer
         data.batchBuffer.clear();
+
+        if ( !StringUtil.isEmpty( meta.getPostSQL()) ) {
+          execPostSQL(meta.getPostSQL());
+        }
+
       } catch ( KettleDatabaseBatchException be ) {
         if ( getStepMeta().isDoingErrorHandling() ) {
           // Right at the back we are experiencing a batch commit problem...
