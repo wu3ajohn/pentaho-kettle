@@ -35,21 +35,21 @@ jobs:
       with:
         name: pdi-ce-9.5.2.0-273.zip
         path: pentaho-kettle-9.5/assemblies/client/target/pdi-ce-9.5.2.0-273.zip
-		
+
     - name: Upload Artifacts 2
       if: always()
       uses: actions/upload-artifact@v3
       with:
         name: pdi-core-libs-9.5.2.0-273.zip
         path: pentaho-kettle-9.5/assemblies/core/lib/target/pdi-core-libs-9.5.2.0-273.zip
-		
+
     - name: Upload Artifacts 3
       if: always()
       uses: actions/upload-artifact@v3
       with:
         name: pdi-core-static-9.5.2.0-273.zip
         path: pentaho-kettle-9.5/assemblies/core/static/target/pdi-core-static-9.5.2.0-273.zip
-		
+
     - name: Upload Artifacts 4
       if: always()
       uses: actions/upload-artifact@v3
