@@ -25,6 +25,7 @@
     <pdi-pur-plugin.version>9.3.0.8-870</pdi-pur-plugin.version>
     <junit.version>4.11</junit.version>
     <mockito-core.version>1.9.5</mockito-core.version>
+    <pentaho-platform-api.version>9.3.0.0-20241006.145231-58</pentaho-platform-api.version>
   </properties>
 
   <dependencies>
@@ -49,7 +50,7 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>pentaho-platform-api</artifactId>
-      <version>${platform.version}</version>
+      <version>${pentaho-platform-api.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>

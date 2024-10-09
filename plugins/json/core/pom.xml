@@ -30,6 +30,7 @@
     <dependency.com.tinkerpop.blueprints.version>2.6.0</dependency.com.tinkerpop.blueprints.version>
     <dependency.org.powermock.version>1.6.0</dependency.org.powermock.version>
     <pentaho-metastore.version>9.3.0.0-20241006.143806-27</pentaho-metastore.version>
+    <pentaho-platform-api.version>9.3.0.0-20241006.145231-58</pentaho-platform-api.version>
   </properties>
 
   <dependencies>
@@ -91,7 +92,7 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>pentaho-platform-api</artifactId>
-      <version>${platform.version}</version>
+      <version>${pentaho-platform-api.version}</version>
       <exclusions>
         <exclusion>
           <groupId>*</groupId>

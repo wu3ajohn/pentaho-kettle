@@ -25,9 +25,9 @@
 
     <!-- Pentaho dependencies -->
     <pentaho-reporting.version>9.3.0.8-870</pentaho-reporting.version>
-    <pentaho-registry.version>9.3.0.8-870</pentaho-registry.version>
+    <pentaho-registry.version>9.3.0.0-20241006.145205-27</pentaho-registry.version>
     <pentaho-connections.version>9.3.0.8-870</pentaho-connections.version>
-    <mondrian.version>9.3.0.8-870</mondrian.version>
+    <mondrian.version>9.3.0.0-20241006.145231-26</mondrian.version>
 
     <!-- Third-party dependencies -->
     <antlr-complete.version>3.5.2</antlr-complete.version>
@@ -86,6 +86,7 @@
     <xmlunit.version>1.5</xmlunit.version>
     <wiremock.version>2.25.0</wiremock.version>
     <pentaho-metastore.version>9.3.0.0-20241006.143806-27</pentaho-metastore.version>
+    <pentaho-platform-api.version>9.3.0.0-20241006.145231-58</pentaho-platform-api.version>
   </properties>
 
   <dependencyManagement>
@@ -137,19 +138,19 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>pentaho-platform-api</artifactId>
-      <version>${project.version}</version>
+      <version>${pentaho-platform-api.version}</version>
     </dependency>
 
     <!-- Reporting dependencies -->
     <dependency>
       <groupId>org.pentaho.reporting.library</groupId>
       <artifactId>libfonts</artifactId>
-      <version>${pentaho-reporting.version}</version>
+      <version>9.3.0.0-20241006.143927-31</version>
     </dependency>
     <dependency>
       <groupId>org.pentaho.reporting.engine</groupId>
       <artifactId>classic-core</artifactId>
-      <version>${pentaho-reporting.version}</version>
+      <version>9.3.0.0-20241006.144621-31</version>
     </dependency>
 
 

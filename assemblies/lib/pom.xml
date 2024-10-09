@@ -24,7 +24,7 @@
     <pdi-spark-driver.version>${project.version}</pdi-spark-driver.version>
     <pdi-osgi-bridge.version>9.3.0.8-870</pdi-osgi-bridge.version>
     <commons-database.version>9.3.0.8-870</commons-database.version>
-    <pentaho-registry.version>9.3.0.8-870</pentaho-registry.version>
+    <pentaho-registry.version>9.3.0.0-20241006.145205-27</pentaho-registry.version>
     <pentaho-metaverse.version>9.3.0.8-870</pentaho-metaverse.version>
     <platform.version>9.3.0.8-870</platform.version>
     <pentaho-reporting.version>9.3.0.8-870</pentaho-reporting.version>
@@ -56,6 +56,7 @@
     <bahir.version>2.3.2</bahir.version>
     <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
     <jface.version>3.22.0</jface.version>
+    <pentaho-platform-api.version>9.3.0.0-20241006.145231-58</pentaho-platform-api.version>
   </properties>
 
   <dependencies>
@@ -291,7 +292,7 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>pentaho-platform-api</artifactId>
-      <version>${platform.version}</version>
+      <version>${pentaho-platform-api.version}</version>
       <exclusions>
         <exclusion>
           <groupId>*</groupId>
