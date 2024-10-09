@@ -5,7 +5,7 @@ name: Maven Package
 
 on:
   pull_request:
-    branches: [ 10.2 ]
+    branches: [ my-9.3.0.9-RC ]
   workflow_dispatch:
 
 jobs:
@@ -29,9 +29,30 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Upload Artifacts
+    - name: Upload Artifacts 1
       if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: java-app
-        path: target/*.jar
+        name: pdi-ce-9.3.0.9-RC.zip
+        path: /home/runner/work/pentaho-kettle/pentaho-kettle/assemblies/client/target/pdi-ce-9.3.0.9-RC.zip
+
+    - name: Upload Artifacts 2
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: pdi-core-libs-9.3.0.9-RC.zip
+        path: /home/runner/work/pentaho-kettle/pentaho-kettle/assemblies/core/lib/target/pdi-core-libs-9.3.0.9-RC.zip
+
+    - name: Upload Artifacts 3
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: pdi-core-static-9.3.0.9-RC.zip
+        path: /home/runner/work/pentaho-kettle/pentaho-kettle/assemblies/core/static/target/pdi-core-static-9.3.0.9-RC.zip
+
+    - name: Upload Artifacts 4
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: pdi-core-ce-9.3.0.9-RC.zip
+        path: /home/runner/work/pentaho-kettle/pentaho-kettle/assemblies/core/client/target/pdi-core-ce-9.3.0.9-RC.zip
