@@ -53,7 +53,8 @@
     <license.licenseName>apache_v2</license.licenseName>
 
     <!-- Pentaho dependencies -->
-    <commons-xul.version>9.3.0.0-20241006.145026-27</commons-xul.version>
+    <commons-xul.version>9.3.0.8-870</commons-xul.version>
+    <commons-xul-core.version>9.3.0.0-20241006.145026-27</commons-xul-core.version>
     <pentaho-metastore.version>9.3.0.0-20241006.143806-27</pentaho-metastore.version>
 
     <!-- Third-party dependencies -->
@@ -78,7 +79,7 @@
       <dependency>
         <groupId>org.pentaho</groupId>
         <artifactId>commons-xul-core</artifactId>
-        <version>${commons-xul.version}</version>
+        <version>${commons-xul-core.version}</version>
       </dependency>
       <dependency>
         <groupId>org.pentaho</groupId>

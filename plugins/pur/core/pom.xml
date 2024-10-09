@@ -44,7 +44,7 @@
     <wadl2java.target-package>com.pentaho.di.services</wadl2java.target-package>
     <pentaho-metastore.version>9.3.0.0-20241006.143806-27</pentaho-metastore.version>
     <pentaho-platform-api.version>9.3.0.0-20241006.145231-58</pentaho-platform-api.version>
-    <commons-xul.version>9.3.0.0-20241006.145026-27</commons-xul.version>
+    <commons-xul-core.version>9.3.0.0-20241006.145026-27</commons-xul-core.version>
   </properties>
 
   <dependencies>
@@ -71,7 +71,7 @@
     <dependency>
       <groupId>org.pentaho</groupId>
       <artifactId>commons-xul-core</artifactId>
-      <version>${commons-xul.version}</version>
+      <version>${commons-xul-core.version}</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
