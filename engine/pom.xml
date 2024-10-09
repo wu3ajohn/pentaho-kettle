@@ -85,6 +85,7 @@
     <rxjava.version>2.2.3</rxjava.version>
     <xmlunit.version>1.5</xmlunit.version>
     <wiremock.version>2.25.0</wiremock.version>
+    <pentaho-metastore.version>9.3.0.0-20241006.143806-27</pentaho-metastore.version>
   </properties>
 
   <dependencyManagement>
@@ -120,6 +121,7 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>metastore</artifactId>
+      <version>${pentaho-metastore.version}</version>
       <exclusions>
         <exclusion>
           <groupId>*</groupId>

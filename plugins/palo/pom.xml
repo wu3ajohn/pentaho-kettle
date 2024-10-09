@@ -41,6 +41,7 @@
     <junit.version>4.7</junit.version>
     <ascsapjco3wrp.version>20100529</ascsapjco3wrp.version>
     <pdi.version>9.3.0.8-870</pdi.version>
+    <pentaho-metastore.version>9.3.0.0-20241006.143806-27</pentaho-metastore.version>
   </properties>
 
   <dependencyManagement>

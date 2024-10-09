@@ -37,6 +37,7 @@
     <woodstox-core-asl.version>4.4.1</woodstox-core-asl.version>
     <xmlunit.version>1.5</xmlunit.version>
     <joda.version>2.10.2</joda.version>
+    <pentaho-metastore.version>9.3.0.0-20241006.143806-27</pentaho-metastore.version>
     <encryption-support.version>9.3.0.0-20241006.143927-40</encryption-support.version>
   </properties>
 
@@ -45,6 +46,8 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>metastore</artifactId>
+      <version>${pentaho-metastore.version}</version>
+
     </dependency>
 
     <!-- Third-party dependencies -->
