@@ -18,6 +18,7 @@
 
   <properties>
     <powermock.version>1.6.3</powermock.version>
+    <commons-xul.version>9.3.0.0-20241006.145026-27</commons-xul.version>
   </properties>
 
   <dependencies>
@@ -37,6 +38,7 @@
     <dependency>
       <groupId>org.pentaho</groupId>
       <artifactId>commons-xul-core</artifactId>
+      <version>${commons-xul.version}</version>
     </dependency>
     <dependency>
       <groupId>org.pentaho</groupId>
