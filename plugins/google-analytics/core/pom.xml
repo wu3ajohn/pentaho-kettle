@@ -26,6 +26,7 @@
     <timestamp>${maven.build.timestamp}</timestamp>
     <build.description>${project.description}</build.description>
     <maven.build.timestamp.format>yyyy/MM/dd hh:mm</maven.build.timestamp.format>
+    <pentaho-metastore.version>9.3.0.0-20241006.143806-27</pentaho-metastore.version>
   </properties>
 
   <dependencies>
@@ -65,7 +66,7 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>metastore</artifactId>
-      <version>${project.version}</version>
+      <version>${pentaho-metastore.version}</version>
       <exclusions>
         <exclusion>
           <groupId>*</groupId>

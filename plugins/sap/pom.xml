@@ -36,6 +36,7 @@
     <junit.version>4.7</junit.version>
     <ascsapjco3wrp.version>20100529</ascsapjco3wrp.version>
     <pdi.version>9.3.0.8-870</pdi.version>
+    <pentaho-metastore.version>9.3.0.0-20241006.143806-27</pentaho-metastore.version>
   </properties>
 
 
@@ -68,7 +69,7 @@
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>metastore</artifactId>
-        <version>${pdi.version}</version>
+        <version>${pentaho-metastore.version}</version>
         <scope>provided</scope>
         <exclusions>
           <exclusion>

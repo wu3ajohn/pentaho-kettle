@@ -24,6 +24,7 @@
     <eclipse.version>3.6.0</eclipse.version>
     <junit.version>4.11</junit.version>
     <js.project.list>requirejs,requirejs-text,angular,require-css,angular-i18n</js.project.list>
+    <pentaho-metastore.version>9.3.0.0-20241006.143806-27</pentaho-metastore.version>
   </properties>
 
   <dependencies>
@@ -83,7 +84,7 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>metastore</artifactId>
-      <version>${pdi.version}</version>
+      <version>${pentaho-metastore.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>

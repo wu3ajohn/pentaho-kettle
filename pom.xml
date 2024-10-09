@@ -54,7 +54,7 @@
 
     <!-- Pentaho dependencies -->
     <commons-xul.version>9.3.0.8-870</commons-xul.version>
-    <pentaho-metastore.version>9.3.0.8-870</pentaho-metastore.version>
+    <pentaho-metastore.version>9.3.0.0-20241006.143806-27</pentaho-metastore.version>
 
     <!-- Third-party dependencies -->
     <org.eclipse.swt.version>4.6</org.eclipse.swt.version>

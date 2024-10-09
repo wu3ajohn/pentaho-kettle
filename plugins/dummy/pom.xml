@@ -34,6 +34,7 @@
     <jface.version>3.3.0-I20070606-0010</jface.version>
     <junit.version>4.7</junit.version>
     <pdi.version>9.3.0.8-870</pdi.version>
+    <pentaho-metastore.version>9.3.0.0-20241006.143806-27</pentaho-metastore.version>
   </properties>
   <build>
     <resources>
@@ -77,7 +78,7 @@
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>metastore</artifactId>
-        <version>${pdi.version}</version>
+        <version>${pentaho-metastore.version}</version>
         <scope>provided</scope>
         <exclusions>
           <exclusion>
