@@ -5,7 +5,7 @@ name: Maven Package
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [ my-9.3.0.9-RC ]
   workflow_dispatch:
 
 jobs:
