@@ -173,7 +173,7 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>pentaho-vfs-browser</artifactId>
-      <version>${pdi.version}</version>
+      <version>9.3.0.0-20241006.144623-27</version>
       <scope>test</scope>
     </dependency>
     <dependency>
