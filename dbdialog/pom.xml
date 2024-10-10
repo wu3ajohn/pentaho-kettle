@@ -44,12 +44,12 @@
     <dependency>
       <groupId>org.pentaho</groupId>
       <artifactId>commons-xul-swt</artifactId>
-      <version>${commons-xul.version}</version>
+      <version>9.3.0.0-20241006.145026-39</version>
     </dependency>
     <dependency>
       <groupId>org.pentaho</groupId>
       <artifactId>commons-xul-swing</artifactId>
-      <version>${commons-xul.version}</version>
+      <version>9.3.0.0-20241006.145026-27</version>
     </dependency>
 
     <!-- Test dependencies -->

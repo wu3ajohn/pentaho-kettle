@@ -84,7 +84,7 @@
     <dependency>
       <groupId>org.pentaho</groupId>
       <artifactId>commons-xul-swt</artifactId>
-      <version>${commons-xul.version}</version>
+      <version>9.3.0.0-20241006.145026-39</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
