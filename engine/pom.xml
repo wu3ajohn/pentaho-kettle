@@ -110,7 +110,7 @@
     <dependency>
       <groupId>org.pentaho</groupId>
       <artifactId>pdi-engine-api</artifactId>
-      <version>${project.version}</version>
+      <version>9.3.0.0-20241006.145322-79</version>
     </dependency>
 
     <!-- Pentaho dependencies -->

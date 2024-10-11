@@ -35,7 +35,7 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>pentaho-metastore-locator-api</artifactId>
-      <version>${pdi.version}</version>
+      <version>9.3.0.0-20241006.143928-29</version>
     </dependency>
     <dependency>
       <groupId>org.pentaho.di.plugins</groupId>
