@@ -91,8 +91,8 @@
       </dependency>
       <dependency>
         <groupId>pentaho</groupId>
-        <artifactId></artifactId>
-        <version>${project.version}</version>
+        <artifactId>pentaho-i18n-webservice-bundle</artifactId>
+        <version>9.3.0.0-20241006.143928-42</version>
         <scope>provided</scope>
         <exclusions>
           <exclusion>
