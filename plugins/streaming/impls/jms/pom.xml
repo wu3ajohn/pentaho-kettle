@@ -43,7 +43,7 @@
     <jms.version>2.0.1</jms.version>
     <pdi.version>9.3.0.8-870</pdi.version>
     <artemis.version>2.5.0</artemis.version>
-    <pentaho-metaverse.version>9.3.0.8-870</pentaho-metaverse.version>
+    <pentaho-metaverse.version>9.3.0.0-20241006.160536-38</pentaho-metaverse.version>
   </properties>
 
   <dependencies>
