@@ -81,7 +81,7 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>pentaho-platform-core</artifactId>
-      <version>${platform.version}</version>
+      <version>9.3.0.0-20241006.160059-42</version>
       <exclusions>
         <exclusion>
           <groupId>*</groupId>
