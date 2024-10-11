@@ -46,14 +46,17 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>pentaho-platform-extensions</artifactId>
+      <version>9.3.0.0-20241006.160207-41</version>
     </dependency>
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>pentaho-i18n-bundle</artifactId>
+      <version>9.3.0.0-20241006.143928-29</version>
     </dependency>
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>pentaho-i18n-webservice-bundle</artifactId>
+      <version>9.3.0.0-20241006.143928-42</version>
     </dependency>
     <dependency>
       <groupId>org.eclipse.swt</groupId>

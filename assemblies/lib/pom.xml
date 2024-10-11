@@ -270,7 +270,7 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>pentaho-platform-extensions</artifactId>
-      <version>${platform.version}</version>
+      <version>9.3.0.0-20241006.160207-41</version>
       <exclusions>
         <exclusion>
           <groupId>*</groupId>

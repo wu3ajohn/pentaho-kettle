@@ -58,7 +58,7 @@
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>pentaho-platform-extensions</artifactId>
-        <version>${project.version}</version>
+        <version>9.3.0.0-20241006.160207-41</version>
         <scope>provided</scope>
         <exclusions>
           <exclusion>
@@ -70,7 +70,7 @@
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>pentaho-i18n-bundle</artifactId>
-        <version>${project.version}</version>
+        <version>9.3.0.0-20241006.143928-29</version>
         <scope>provided</scope>
         <exclusions>
           <exclusion>
@@ -82,7 +82,7 @@
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>pentaho-i18n-webservice-bundle</artifactId>
-        <version>${project.version}</version>
+        <version>9.3.0.0-20241006.143928-42</version>
         <scope>provided</scope>
         <exclusions>
           <exclusion>
