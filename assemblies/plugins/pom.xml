@@ -41,7 +41,7 @@
     <pdi-platform-utils-plugin.version>9.3.0.8-870</pdi-platform-utils-plugin.version>
     <vertica-bulkloader-plugin.version>9.3.0.8-870</vertica-bulkloader-plugin.version>
     <pdi-pur-plugin.version>9.3.0.8-870</pdi-pur-plugin.version>
-    <pentaho-mongodb-plugin.version>9.3.0.8-870</pentaho-mongodb-plugin.version>
+    <pentaho-mongodb-plugin.version>9.3.0.0-20241006.155542-28</pentaho-mongodb-plugin.version>
   </properties>
 
   <dependencies>

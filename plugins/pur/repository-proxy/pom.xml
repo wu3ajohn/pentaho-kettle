@@ -60,7 +60,7 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>pentaho-kettle-repository-locator-api</artifactId>
-      <version>${project.version}</version>
+      <version>9.3.0.0-20241006.160356-29</version>
     </dependency>
 
     <!-- Endorsed Standards Excluded from Java 11+ -->
