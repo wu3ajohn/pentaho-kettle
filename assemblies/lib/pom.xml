@@ -17,7 +17,7 @@
   <properties>
     <pdi-engine-spark.version>${project.version}</pdi-engine-spark.version>
     <rxjava.version>2.2.3</rxjava.version>
-    <pentaho-mongodb-plugin.version>9.3.0.0-20241006.155542-40</pentaho-mongodb-plugin.version>
+    <pentaho-mongodb-plugin.version>9.3.0.0-20241006.155542-28</pentaho-mongodb-plugin.version>
 
     <pentaho-json.version>9.3.0.8-870</pentaho-json.version>
     <pentaho-hadoop-shims.version>9.3.0.8-870</pentaho-hadoop-shims.version>
