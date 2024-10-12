@@ -29,13 +29,13 @@
     <org.eclipse.swt.cocoa.macosx.x86_64.version>3.115.100</org.eclipse.swt.cocoa.macosx.x86_64.version>
 
     <!-- Pentaho drivers kar file dependencies versions -->
-    <pentaho-hadoop-shims-cdh61.version>9.3.2021.05.00-422</pentaho-hadoop-shims-cdh61.version>
-    <pentaho-hadoop-shims-hdp30.version>9.3.2021.05.00-422</pentaho-hadoop-shims-hdp30.version>
-    <pentaho-hadoop-shims-emr521.version>9.3.2021.05.00-422</pentaho-hadoop-shims-emr521.version>
-    <pentaho-hadoop-shims-dataproc1421.version>9.3.2021.05.00-422</pentaho-hadoop-shims-dataproc1421.version>
-    <pentaho-hadoop-shims-cdpdc71.version>9.3.2021.05.00-422</pentaho-hadoop-shims-cdpdc71.version>
-    <pentaho-hadoop-shims-mapr61.version>9.3.2021.05.00-422</pentaho-hadoop-shims-mapr61.version>
-    <pentaho-hadoop-shims-hdi40.version>9.3.2021.05.00-422</pentaho-hadoop-shims-hdi40.version>
+    <pentaho-hadoop-shims-cdh61.version>9.3.2022.03.00-428</pentaho-hadoop-shims-cdh61.version>
+    <pentaho-hadoop-shims-hdp30.version>9.3.2022.03.00-428</pentaho-hadoop-shims-hdp30.version>
+    <pentaho-hadoop-shims-emr521.version>9.3.2022.03.00-428</pentaho-hadoop-shims-emr521.version>
+    <pentaho-hadoop-shims-dataproc1421.version>9.3.2022.03.00-428</pentaho-hadoop-shims-dataproc1421.version>
+    <pentaho-hadoop-shims-cdpdc71.version>9.3.2022.03.00-428</pentaho-hadoop-shims-cdpdc71.version>
+    <pentaho-hadoop-shims-mapr61.version>9.3.2022.03.00-428</pentaho-hadoop-shims-mapr61.version>
+    <pentaho-hadoop-shims-hdi40.version>9.3.2022.03.00-428</pentaho-hadoop-shims-hdi40.version>
   </properties>
 
   <dependencies>
