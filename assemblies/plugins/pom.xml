@@ -35,13 +35,13 @@
     <pdi-xml-plugin.version>9.3.0.8-870</pdi-xml-plugin.version>
     <pdi-json-plugin.version>9.3.0.8-870</pdi-json-plugin.version>
     <pdi-sap-plugin.version>9.3.0.8-870</pdi-sap-plugin.version>
-    <big-data-plugin.version>9.3.0.8-870</big-data-plugin.version>
-    <pentaho-cassandra-plugin.version>9.3.0.8-870</pentaho-cassandra-plugin.version>
-    <pdi-teradata-tpt-plugin-package.version>${project.version}</pdi-teradata-tpt-plugin-package.version>
-    <pdi-platform-utils-plugin.version>9.3.0.8-870</pdi-platform-utils-plugin.version>
-    <vertica-bulkloader-plugin.version>9.3.0.8-870</vertica-bulkloader-plugin.version>
+    <big-data-plugin.version>9.3.0.0-20241006.173043-30</big-data-plugin.version>
+    <pentaho-cassandra-plugin.version>9.3.0.0-20241006.155542-26</pentaho-cassandra-plugin.version>
+    <pdi-teradata-tpt-plugin-package.version>9.3.0.0-20241006.145616-27</pdi-teradata-tpt-plugin-package.version>
+    <pdi-platform-utils-plugin.version>9.3.0.0-20241006.161523-38</pdi-platform-utils-plugin.version>
+    <vertica-bulkloader-plugin.version>9.3.0.0-20241006.145618-39</vertica-bulkloader-plugin.version>
     <pdi-pur-plugin.version>9.3.0.8-870</pdi-pur-plugin.version>
-    <pentaho-mongodb-plugin.version>9.3.0.0-20241006.155542-28</pentaho-mongodb-plugin.version>
+    <pentaho-mongodb-plugin.version>9.3.0.0-20241006.155542-40</pentaho-mongodb-plugin.version>
   </properties>
 
   <dependencies>
