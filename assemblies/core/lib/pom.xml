@@ -187,7 +187,7 @@
         <dependency>
             <groupId>pentaho</groupId>
             <artifactId>pentaho-platform-repository</artifactId>
-            <version>${platform.version}</version>
+            <version>9.3.0.0-20241006.160126-56</version>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
