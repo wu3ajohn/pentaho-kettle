@@ -106,7 +106,7 @@
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>pentaho-palo-core</artifactId>
-        <version>${pdi.version}</version>
+        <version>9.3.0.0-20241006.160356-27</version>
       </dependency>
       <!-- test dependencies -->
       <dependency>
