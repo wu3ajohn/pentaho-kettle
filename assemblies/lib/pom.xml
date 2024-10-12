@@ -227,7 +227,7 @@
     <dependency>
       <groupId>org.pentaho</groupId>
       <artifactId>json</artifactId>
-      <version>${pentaho-json.version}</version>
+      <version>9.3.0.0-20241006.144622-27</version>
     </dependency>
     <dependency>
       <groupId>pentaho</groupId>
