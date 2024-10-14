@@ -18,7 +18,7 @@
   <description></description>
 
   <properties>
-    <pentaho-reporting.version>9.5.2.0-272</pentaho-reporting.version>
+    <pentaho-reporting.version>9.4.0.0-343</pentaho-reporting.version>
   </properties>
 
   <dependencies>
@@ -41,7 +41,7 @@
     <dependency>
       <groupId>org.pentaho.reporting.engine</groupId>
       <artifactId>classic-core</artifactId>
-      <version>9.4.0.0-343</version>
+      <version>${pentaho-reporting.version}</version>
     </dependency>
     <dependency>
       <groupId>org.pentaho.reporting.engine</groupId>
