@@ -19,6 +19,7 @@
     <mockito.version>1.10.19</mockito.version>
     <powermock.version>1.6.3</powermock.version>
     <platform.version>9.4.0.0-343</platform.version>
+    <pentaho-metaverse.version>9.4.0.0-343</pentaho-metaverse.version>
   </properties>
 
     <dependencies>

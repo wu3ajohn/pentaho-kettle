@@ -40,6 +40,7 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>pentaho-metaverse-api</artifactId>
+      <version>9.4.0.0-343</version>
     </dependency>
     <dependency>
       <groupId>org.eclipse</groupId>

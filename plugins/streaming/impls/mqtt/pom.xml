@@ -73,6 +73,7 @@
     <maven-bundle-plugin.version>2.4.0</maven-bundle-plugin.version>
     <junit.version>4.12</junit.version>
     <guava.version>17.0</guava.version>
+    <pentaho-metaverse.version>9.4.0.0-343</pentaho-metaverse.version>
   </properties>
 
   <dependencies>
