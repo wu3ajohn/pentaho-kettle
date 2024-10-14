@@ -34,7 +34,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: pdi-ce-9.5.2.0-273.zip
-        path: /home/runner/work/pentaho-kettle-9.5/pentaho-kettle-9.5/assemblies/client/target/pdi-ce-9.5.2.0-273.zip
+        path: /home/runner/work/pentaho-kettle/pentaho-kettle/assemblies/client/target/pdi-ce-9.5.2.0-273.zip
 
 
     # - name: Upload Artifacts 2
@@ -42,18 +42,18 @@ jobs:
     #   uses: actions/upload-artifact@v3
     #   with:
     #     name: pdi-core-libs-9.5.2.0-273.zip
-    #     path: /home/runner/work/pentaho-kettle-9.5/pentaho-kettle-9.5/assemblies/core/lib/target/pdi-core-libs-9.5.2.0-273.zip
+    #     path: /home/runner/work/pentaho-kettle/pentaho-kettle/assemblies/core/lib/target/pdi-core-libs-9.5.2.0-273.zip
 
     # - name: Upload Artifacts 3
     #   if: always()
     #   uses: actions/upload-artifact@v3
     #   with:
     #     name: pdi-core-static-9.5.2.0-273.zip
-    #     path: /home/runner/work/pentaho-kettle-9.5/pentaho-kettle-9.5/assemblies/core/static/target/pdi-core-static-9.5.2.0-273.zip
+    #     path: /home/runner/work/pentaho-kettle/pentaho-kettle/assemblies/core/static/target/pdi-core-static-9.5.2.0-273.zip
 
     # - name: Upload Artifacts 4
     #   if: always()
     #   uses: actions/upload-artifact@v3
     #   with:
     #     name: pdi-core-ce-9.5.2.0-273.zip
-    #     path: /home/runner/work/pentaho-kettle-9.5/pentaho-kettle-9.5/assemblies/core/client/target/pdi-core-ce-9.5.2.0-273.zip
+    #     path: /home/runner/work/pentaho-kettle/pentaho-kettle/assemblies/core/client/target/pdi-core-ce-9.5.2.0-273.zip
