@@ -15,7 +15,7 @@
 
   <properties>
     <poi.version>4.1.1</poi.version>
-    <platform.version>9.5.2.0-272</platform.version>
+    <platform.version>9.4.0.0-343</platform.version>
   </properties>
 
   <dependencies>
