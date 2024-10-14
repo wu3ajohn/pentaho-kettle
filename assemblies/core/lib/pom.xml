@@ -22,10 +22,10 @@
         <pentaho-json.version>9.5.2.0-272</pentaho-json.version>
         <pdi-spark-driver.version>${project.version}</pdi-spark-driver.version>
         <commons-database.version>9.5.2.0-272</commons-database.version>
-        <pentaho-registry.version>9.5.2.0-272</pentaho-registry.version>
+        <pentaho-registry.version>9.4.0.0-343</pentaho-registry.version>
         <pentaho-metaverse.version>9.5.2.0-272</pentaho-metaverse.version>
-        <platform.version>9.5.2.0-272</platform.version>
-        <pentaho-reporting.version>9.5.2.0-272</pentaho-reporting.version>
+        <platform.version>9.4.0.0-343</platform.version>
+        <pentaho-reporting.version>9.4.0.0-343</pentaho-reporting.version>
         <pdi-osgi-bridge.version>9.5.2.0-273</pdi-osgi-bridge.version>
         <pentaho-hadoop-shims.version>9.5.2.0-273</pentaho-hadoop-shims.version>
 
