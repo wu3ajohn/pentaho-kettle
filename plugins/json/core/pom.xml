@@ -16,7 +16,7 @@
 
   <properties>
     <pdi.version>9.5.2.0-273</pdi.version>
-    <pentaho-metaverse.version>9.5.2.0-272</pentaho-metaverse.version>
+    <pentaho-metaverse.version>9.4.0.0-343</pentaho-metaverse.version>
     <platform.version>9.4.0.0-343</platform.version>
     <commons-lang.version>2.6</commons-lang.version>
     <encoder.version>1.2</encoder.version>

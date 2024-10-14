@@ -24,7 +24,7 @@
     <pdi-spark-driver.version>${project.version}</pdi-spark-driver.version>
     <commons-database.version>9.5.2.0-272</commons-database.version>
     <pentaho-registry.version>9.4.0.0-343</pentaho-registry.version>
-    <pentaho-metaverse.version>9.5.2.0-272</pentaho-metaverse.version>
+    <pentaho-metaverse.version>9.4.0.0-343</pentaho-metaverse.version>
     <platform.version>9.4.0.0-343</platform.version>
     <pentaho-reporting.version>9.4.0.0-343</pentaho-reporting.version>
     <pdi-osgi-bridge.version>9.5.2.0-273</pdi-osgi-bridge.version>
