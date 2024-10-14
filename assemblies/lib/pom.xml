@@ -20,7 +20,7 @@
     <pentaho-mongodb-plugin.version>9.5.2.0-272</pentaho-mongodb-plugin.version>
     <big-data-plugin.version>9.5.2.0-273</big-data-plugin.version>
 
-    <pentaho-json.version>9.5.2.0-272</pentaho-json.version>
+    <pentaho-json.version>9.4.0.0-343</pentaho-json.version>
     <pdi-spark-driver.version>${project.version}</pdi-spark-driver.version>
     <commons-database.version>9.5.2.0-272</commons-database.version>
     <pentaho-registry.version>9.4.0.0-343</pentaho-registry.version>
