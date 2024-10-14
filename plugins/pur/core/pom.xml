@@ -68,6 +68,7 @@
     <dependency>
       <groupId>org.pentaho</groupId>
       <artifactId>commons-xul-core</artifactId>
+      <version>9.4.0.0-343</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
