@@ -13,7 +13,7 @@
   <artifactId>pentaho-reporting-plugins-ui</artifactId>
   <name>PDI Pentaho Reporting Plugins UI</name>
   <properties>
-    <pentaho-reporting.version>9.5.2.0-272</pentaho-reporting.version>
+    <pentaho-reporting.version>9.4.0.0-343</pentaho-reporting.version>
   </properties>
 
   <dependencies>
