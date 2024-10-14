@@ -14,10 +14,10 @@
   </parent>
 
   <properties>
-    <pdi-dataservice-driver-bundle.version>9.5.2.0-272</pdi-dataservice-driver-bundle.version>
+    <pdi-dataservice-driver-bundle.version>9.4.0.0-343</pdi-dataservice-driver-bundle.version>
 
-    <pentaho-launcher.version>9.5.2.0-272</pentaho-launcher.version>
-    <oss-licenses.version>9.5.2.0-272</oss-licenses.version>
+    <pentaho-launcher.version>9.4.0.0-343</pentaho-launcher.version>
+    <oss-licenses.version>9.4.0.0-343</oss-licenses.version>
     <pentaho-karaf.version>9.5.2.0-273</pentaho-karaf.version>
 
     <!-- swt -->
