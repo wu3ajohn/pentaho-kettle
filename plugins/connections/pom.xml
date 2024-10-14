@@ -59,7 +59,7 @@
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>pentaho-platform-extensions</artifactId>
-        <version>${platform.version}</version>
+        <version>9.4.0.0-343</version>
         <scope>provided</scope>
         <exclusions>
           <exclusion>
@@ -71,7 +71,7 @@
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>pentaho-i18n-bundle</artifactId>
-        <version>9.5.2.0-272</version>
+        <version>9.4.0.0-343</version>
         <scope>provided</scope>
         <exclusions>
           <exclusion>
