@@ -40,7 +40,7 @@
     <xmlunit.version>1.5</xmlunit.version>
     <joda.version>2.10.2</joda.version>
 	<!-- Pentaho Dependencies  https://hitachiedge1.jfrog.io/ui/native/pnt-mvn/org/pentaho/pentaho-encryption-support/9.5.2.0-272/ -->
-    <encryption-support.version>9.5.2.0-272</encryption-support.version> 
+    <encryption-support.version>9.4.0.0-343</encryption-support.version> 
   </properties>
 
   <dependencies>
@@ -48,7 +48,7 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>metastore</artifactId>
-	  <version>9.5.2.0-272</version>
+	  <version>9.4.0.0-343</version>
     </dependency>
 
     <!-- Third-party dependencies -->

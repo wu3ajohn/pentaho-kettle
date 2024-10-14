@@ -85,7 +85,7 @@
     <xmlunit.version>1.5</xmlunit.version>
     <wiremock.version>2.25.0</wiremock.version>
     <platform.version>9.5.2.0-272</platform.version>
-    <pentaho-metastore.version>9.5.2.0-272</pentaho-metastore.version>
+    <pentaho-metastore.version>9.4.0.0-343</pentaho-metastore.version>
   </properties>
 
   <dependencyManagement>

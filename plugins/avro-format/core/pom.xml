@@ -21,7 +21,7 @@
     <pdi.version>9.5.2.0-273</pdi.version>
     <org.apache.avro.version>1.8.0</org.apache.avro.version>
     <jface.version>3.22.0</jface.version>
-    <pentaho-metastore.version>9.5.2.0-272</pentaho-metastore.version>
+    <pentaho-metastore.version>9.4.0.0-343</pentaho-metastore.version>
   </properties>
 
   <build>

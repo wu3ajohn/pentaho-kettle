@@ -19,7 +19,7 @@
   <properties>
     <mockito.version>1.10.19</mockito.version>
     <powermock.version>1.6.3</powermock.version>
-    <pentaho-metastore.version>9.5.2.0-272</pentaho-metastore.version>
+    <pentaho-metastore.version>9.4.0.0-343</pentaho-metastore.version>
   </properties>
 
   <dependencies>

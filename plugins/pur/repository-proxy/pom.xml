@@ -19,7 +19,7 @@
   <properties>
     <!-- Kettle dependencies -->
     <pdi.version>9.5.2.0-273</pdi.version>
-    <!-- <metastore.version>9.5.2.0-273</metastore.version>-->
+    <metastore.version>9.4.0.0-343</metastore.version>
     <platform.version>9.5.2.0-272</platform.version>
     <pentaho-osgi-bundles.version>9.5.2.0-273</pentaho-osgi-bundles.version>
     <pdi-pur-plugin.version>9.5.2.0-273</pdi-pur-plugin.version>
