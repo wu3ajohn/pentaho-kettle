@@ -106,7 +106,7 @@
     <dependency>
       <groupId>pentaho</groupId>
       <artifactId>pentaho-vfs-browser</artifactId>
-      <version>9.5.2.0-272</version>
+      <version>9.4.0.0-343</version>
       <scope>test</scope>
     </dependency>
     <dependency>
